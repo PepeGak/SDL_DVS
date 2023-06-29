@@ -9,4 +9,4 @@
 
 
 
-#endif
+#endif //_CLASS_RENDERER_HPP_

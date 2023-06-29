@@ -6,4 +6,4 @@
 
 
 
-#endif
+#endif //_CLASS_FUEL_HPP_

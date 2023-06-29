@@ -8,4 +8,4 @@
 
 
 
-#endif
+#endif //_CLASS_MUSIC_HPP_
