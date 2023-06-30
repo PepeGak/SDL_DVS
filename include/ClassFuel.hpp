@@ -18,8 +18,8 @@ public:
     };
 
 private:
-    double fuel_ratio;
-    Octane_Rating rating;
+    double fuel_ratio; //Отношения массы воздуха к массе топлива
+    Octane_Rating rating; //Октановое число
 };
 
 #endif //_CLASS_FUEL_HPP_
