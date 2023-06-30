@@ -1,4 +1,4 @@
-#include "../include/ClassMusic.hpp"
+#include "ClassMusic.hpp"
 
 ClassMusic::ClassMusic()
 {
