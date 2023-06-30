@@ -12,7 +12,9 @@ public:
     */
     enum class Octane_Rating
     {
-        
+        AI_92 = 0,
+        AI_95,
+        AI_98
     };
 
 private:
