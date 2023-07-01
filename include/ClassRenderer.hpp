@@ -10,7 +10,6 @@
 class ClassRenderer
 {
 public:
-    
 };
 
 #endif //_CLASS_RENDERER_HPP_
