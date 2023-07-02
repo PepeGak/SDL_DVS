@@ -1,6 +1,7 @@
-
+#include "ClassMain.hpp"
 
 int main(int argc, char* args[])
 {
-    return 0;
+    ClassMain engine;
+    return engine.onExecute();
 }

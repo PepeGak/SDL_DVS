@@ -6,7 +6,7 @@
 
 #include "ClassEvent.hpp"
 
-class ClassMain : public ClassEvent
+class ClassMain : private ClassEvent
 {
 public:
     ClassMain();
@@ -20,7 +20,7 @@ private:
     void onRender();
     void onLoop();
     void onQuit();
-
+    bool appRunning;
 
 };
 

@@ -10,9 +10,10 @@ class ClassEngine
 public:
     enum class EngineType
     {
-	R4 = 0,
-	V8
+	    R4 = 0,
+	    V8
     };
+    
 private:
 
 };

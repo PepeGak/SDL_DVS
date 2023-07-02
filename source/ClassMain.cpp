@@ -2,6 +2,7 @@
 
 ClassMain::ClassMain()
 {
+    this->appRunning = true;
 }
 
 ClassMain::~ClassMain()
@@ -11,5 +12,7 @@ ClassMain::~ClassMain()
 int ClassMain::onExecute()
 {
     
+
+
     return 0;
 }
