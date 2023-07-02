@@ -17,3 +17,5 @@ $(PREF_OBJ)%.o: $(PREF_SRC)%.cpp
 
 clean:
 	rm $(PREF_OBJ)*.o $(TARGET)
+
+all: $(TARGET)

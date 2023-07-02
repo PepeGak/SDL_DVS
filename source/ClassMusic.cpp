@@ -7,7 +7,7 @@ ClassMusic::ClassMusic()
 
 ClassMusic::~ClassMusic()
 {
-    
+
 }
 
 void ClassMusic::play(Sound mus)
@@ -17,5 +17,5 @@ void ClassMusic::play(Sound mus)
 
 void ClassMusic::clear()
 {
-    
+
 }

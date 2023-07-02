@@ -11,7 +11,7 @@ void ClassEvent::onEvent(SDL_Event *ev)
     case SDL_QUIT:
         this->onExit();
         break;
-    
+
     default:
         break;
     }

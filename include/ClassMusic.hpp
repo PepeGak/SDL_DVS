@@ -17,13 +17,13 @@ public:
     */
     enum class Sound
     {
-
     };
 
     ClassMusic();
     ~ClassMusic();
-    static void play(Sound snd);
-    static void clear();
+    void play(Sound snd);
+
+    void clear();
 private:
     Mix_Chunk** sounds = nullptr;
 };

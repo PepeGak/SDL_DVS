@@ -36,8 +36,7 @@ private:
     void onQuit();
     bool appRunning;
 
-    virtual void onExit();
-
+    void onExit() override;
 };
 
 #endif //_CLASS_MAIN_HPP_
