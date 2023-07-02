@@ -16,6 +16,8 @@ public:
     
 private:
 
+protected:
+
 };
 
 #endif //_CLASS_ENGINE_HPP_

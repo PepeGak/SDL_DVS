@@ -1,6 +1,6 @@
 TARGET = DVS.out
 COMP = g++
-LIBS = -lSDL2 -lSDL2_mixer -lSDL2_ttf
+LIBS = -lSDL2 -lSDL2_mixer -lSDL2_ttf -lSDL2_image
 
 PREF_SRC = ./source/
 PREF_OBJ = ./objects/
