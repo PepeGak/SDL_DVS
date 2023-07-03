@@ -2,15 +2,26 @@
 
 ClassMain::ClassMain()
 {
+#ifdef _DVS_DEBUG_
+    std::cout << "ClassMain::ClassMain()\n";
+#endif
+
     this->appRunning = true;
 }
 
 ClassMain::~ClassMain()
 {
+#ifdef _DVS_DEBUG_
+    std::cout << "ClassMain::~ClassMain()\n";
+#endif
 }
 
 int ClassMain::onExecute()
 {
+#ifdef _DVS_DEBUG_
+    std::cout << "int ClassMain::onExecute()\n";
+#endif
+
     if (!this->onInit())
     {
         std::cout << "onInit() error " << SDL_GetError() << "\n";

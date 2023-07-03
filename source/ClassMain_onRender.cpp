@@ -2,6 +2,10 @@
 
 void ClassMain::onRender()
 {
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassMain::onRender()\n";
+#endif
+
     SDL_Point some_points[10] =
         {
             {10, 10},
