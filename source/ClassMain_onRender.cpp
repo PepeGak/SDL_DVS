@@ -18,12 +18,15 @@ void ClassMain::onRender()
             {500, 40},
             {40, 470},
             {10, 10}};
-    
-    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
     SDL_RenderClear(this->renderer);
 
     SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
     ClassRenderer::Draw(this->renderer, some_points, 10);
+
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+    ClassRenderer::Draw(this->renderer, this->en->GetPart()->shape, this->en->GetPart()->pointAmount);
 
     SDL_RenderPresent(this->renderer);
 }

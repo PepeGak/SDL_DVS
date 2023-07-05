@@ -6,13 +6,12 @@ ClassEngine::ClassEngine(EngineType type)
     std::cout << "ClassEngine::ClassEngine(EngineType)\n";
 #endif
 
-    this->shape = nullptr;
-    this->points_amount = 0;
-
     switch (type)
     {
     case EngineType::R4:
-        this->LoadShape("./assets/engine_assets/piston.dat");
+        this->engineParts.reserve(4);
+        this->engineParts.push_back(ClassEngine::EnginePart());
+        this->LoadShape("./assets/engine_assets/R4/engine_body.dat", 0);
         break;
 
     case EngineType::V8:
@@ -23,18 +22,31 @@ ClassEngine::ClassEngine(EngineType type)
     }
 }
 
+ClassEngine::ClassEngine(const char *path)
+{
+    this->engineParts.push_back(ClassEngine::EnginePart());
+    this->LoadShape(path, 0);
+}
+
 ClassEngine::~ClassEngine()
 {
 #ifdef _DVS_DEBUG_
     std::cout << "ClassEngine::~ClassEngine()\n";
 #endif
 
-    if (this->shape)
-        delete[] this->shape;
-    this->shape = nullptr;
+    this->engineParts.clear();
 }
 
-void ClassEngine::LoadShape(const char *path)
+void ClassEngine::Normalise(const SDL_Point &centre, const Sint32 index)
+{
+    for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+    {
+        this->engineParts[index].shape[i].x += centre.x;
+        this->engineParts[index].shape[i].y += centre.y;
+    }
+}
+
+void ClassEngine::LoadShape(const char *path, const Sint32 index)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassEngine::LoadShape(const char*)\n";
@@ -46,14 +58,14 @@ void ClassEngine::LoadShape(const char *path)
         std::cout << "ClassEngine Load error\n";
         return;
     }
-    this->points_amount = fin.tellg() / sizeof(SDL_Point);
+    this->engineParts[index].pointAmount = fin.tellg() / sizeof(SDL_Point);
     fin.seekg(std::ios::beg);
 
-    this->shape = new SDL_Point[this->points_amount];
-    SDL_memset(this->shape, 0, this->points_amount);
-    for (int i = 0; i < this->points_amount; i++)
+    this->engineParts[index].shape = new SDL_Point[this->engineParts[index].pointAmount];
+    SDL_memset(this->engineParts[index].shape, 0, this->engineParts[index].pointAmount);
+    for (int i = 0; i < this->engineParts[index].pointAmount; i++)
     {
-        fin.read((char *)&this->shape[i], sizeof(SDL_Point));
+        fin.read((char *)&this->engineParts[index].shape[i], sizeof(SDL_Point));
     }
 
     fin.close();

@@ -1,6 +1,6 @@
 #include "ClassRenderer.hpp"
 
-void ClassRenderer::Draw(SDL_Renderer *renderer, SDL_Point points[], Sint32 amount)
+void ClassRenderer::Draw(SDL_Renderer* renderer, const SDL_Point points[], const Sint32 amount)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassRenderer::Draw(SDL_Renderer*, SDL_Point*, Sint32)\n";
@@ -9,7 +9,8 @@ void ClassRenderer::Draw(SDL_Renderer *renderer, SDL_Point points[], Sint32 amou
     SDL_RenderDrawLines(renderer, points, amount);
 }
 
-void ClassRenderer::Draw(SDL_Renderer *renderer, SDL_Point centre, Sint32 p, Uint32 phi, Uint32 phi_beg)
+void ClassRenderer::Draw(SDL_Renderer* renderer, const SDL_Point centre, const Sint32 p, 
+    const Uint32 phi, const Uint32 phi_beg = 0)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassRenderer::Draw(SDL_Renderer*, SDL_Point, Sint32, Uint32, Uint32)\n";
@@ -17,7 +18,8 @@ void ClassRenderer::Draw(SDL_Renderer *renderer, SDL_Point centre, Sint32 p, Uin
 
 }
 
-void ClassRenderer::Draw(SDL_Renderer* renderer, TTF_Font *font, const char *string, SDL_Rect where, SDL_Colour colour)
+void ClassRenderer::Draw(SDL_Renderer* renderer, TTF_Font* font, 
+        const char* string, const SDL_Rect where, const SDL_Colour colour)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassRenderer::Draw(SDL_Renderer*, TTF_Font*, const char*, SDL_Rect, SDL_Colour)\n";

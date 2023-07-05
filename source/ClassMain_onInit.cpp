@@ -22,5 +22,13 @@ bool ClassMain::onInit()
     if (!this->renderer)
         return false;
 
+    ///
+    this->en = new ClassEngine("./assets/engine_assets/R4/engine_body.dat");
+    if (!this->en)
+        return false;
+    SDL_Point centre = {320, 240};
+    this->en->Normalise(centre, 0);
+    ///
+
     return true;
 }

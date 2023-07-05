@@ -6,6 +6,10 @@ ClassMain::ClassMain()
     std::cout << "ClassMain::ClassMain()\n";
 #endif
 
+    ///
+    this->en = nullptr;
+    ///
+
     this->appRunning = true;
 }
 
@@ -14,6 +18,7 @@ ClassMain::~ClassMain()
 #ifdef _DVS_DEBUG_
     std::cout << "ClassMain::~ClassMain()\n";
 #endif
+
 }
 
 int ClassMain::onExecute()

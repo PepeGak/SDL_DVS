@@ -11,11 +11,11 @@
 class ClassRenderer
 {
 public:
-    static void Draw(SDL_Renderer* renderer, SDL_Point points[], Sint32 amount); //Рисовка линий по нескольким точкам
-    static void Draw(SDL_Renderer* renderer, SDL_Point centre, Sint32 p, 
-        Uint32 phi, Uint32 phi_beg = 0); //Рисовка круга в полярных координатах
+    static void Draw(SDL_Renderer* renderer, const SDL_Point points[], const Sint32 amount); //Рисовка линий по нескольким точкам
+    static void Draw(SDL_Renderer* renderer, const SDL_Point centre, const Sint32 p, 
+        const Uint32 phi, const Uint32 phi_beg); //Рисовка круга в полярных координатах
     static void Draw(SDL_Renderer* renderer, TTF_Font* font, 
-        const char* string, SDL_Rect where, SDL_Colour colour); //Рисовка текста
+        const char* string, const SDL_Rect where, const SDL_Colour colour); //Рисовка текста
 };
 
 #endif //_CLASS_RENDERER_HPP_
