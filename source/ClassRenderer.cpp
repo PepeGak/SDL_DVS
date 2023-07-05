@@ -32,3 +32,13 @@ void ClassRenderer::Draw(SDL_Renderer* renderer, TTF_Font* font,
     SDL_RenderCopy(renderer, textTexture, nullptr, &where);
     SDL_DestroyTexture(textTexture);
 }
+
+void ClassRenderer::Draw(SDL_Renderer *renderer, const ClassEngine::EnginePart* shape)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassRenderer::Draw(SDL_Renderer *renderer, const ClassEngine::EnginePart shape)\n";
+#endif
+
+    if (shape != nullptr && shape->shape != nullptr)
+        SDL_RenderDrawLines(renderer, shape->shape, shape->pointAmount);
+}

@@ -6,11 +6,10 @@ ClassMain::ClassMain()
     std::cout << "ClassMain::ClassMain()\n";
 #endif
 
-    ///
     this->en = nullptr;
-    ///
-
     this->appRunning = true;
+    this->window = nullptr;
+    this->renderer = nullptr;
 }
 
 ClassMain::~ClassMain()

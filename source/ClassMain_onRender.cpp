@@ -26,7 +26,8 @@ void ClassMain::onRender()
     ClassRenderer::Draw(this->renderer, some_points, 10);
 
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-    ClassRenderer::Draw(this->renderer, this->en->GetPart()->shape, this->en->GetPart()->pointAmount);
+    ClassRenderer::Draw(this->renderer, this->en->GetPart(0));
+    ClassRenderer::Draw(this->renderer, this->en->GetPart(1));
 
     SDL_RenderPresent(this->renderer);
 }

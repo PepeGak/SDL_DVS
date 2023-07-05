@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include "ClassEngine.hpp"
 
 class ClassRenderer
 {
@@ -16,6 +17,7 @@ public:
         const Uint32 phi, const Uint32 phi_beg); //Рисовка круга в полярных координатах
     static void Draw(SDL_Renderer* renderer, TTF_Font* font, 
         const char* string, const SDL_Rect where, const SDL_Colour colour); //Рисовка текста
+    static void Draw(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape); //Рисовка контура детали
 };
 
 #endif //_CLASS_RENDERER_HPP_

@@ -9,9 +9,19 @@ ClassEngine::ClassEngine(EngineType type)
     switch (type)
     {
     case EngineType::R4:
-        this->engineParts.reserve(4);
-        this->engineParts.push_back(ClassEngine::EnginePart());
+        //Внешний каркас, Коленвал, Шатун, Поршень, Клапаны, Верх
+        this->engineParts.reserve(6);
+        this->engineParts = 
+        {
+            ClassEngine::EnginePart(),
+            ClassEngine::EnginePart(),
+            ClassEngine::EnginePart(),
+            ClassEngine::EnginePart(),
+            ClassEngine::EnginePart(),
+            ClassEngine::EnginePart()
+        };
         this->LoadShape("./assets/engine_assets/R4/engine_body.dat", 0);
+        this->LoadShape("./assets/engine_assets/R4/piston.dat", 1);
         break;
 
     case EngineType::V8:
@@ -34,7 +44,15 @@ ClassEngine::~ClassEngine()
     std::cout << "ClassEngine::~ClassEngine()\n";
 #endif
 
+    for (auto& i : this->engineParts)
+    {
+        if (i.shape)
+            delete[] i.shape;
+        i.pointAmount = 0;
+        i.shape = nullptr;
+    }
     this->engineParts.clear();
+    
 }
 
 void ClassEngine::Normalise(const SDL_Point &centre, const Sint32 index)

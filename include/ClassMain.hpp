@@ -38,11 +38,7 @@ private:
 
     void onExit() override;
 
-    ///
     ClassEngine* en;
-    ///
-
-
 };
 
 #endif //_CLASS_MAIN_HPP_

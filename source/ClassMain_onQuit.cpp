@@ -6,11 +6,9 @@ void ClassMain::onQuit()
     std::cout << "int ClassMain::onQuit()\n";
 #endif
 
-    ///
     if (this->en)
         delete this->en;
     this->en = nullptr;
-    ///
 
     if (this->renderer)
         SDL_DestroyRenderer(this->renderer);
