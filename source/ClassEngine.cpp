@@ -55,13 +55,28 @@ ClassEngine::~ClassEngine()
     
 }
 
-void ClassEngine::Normalise(const SDL_Point &centre, const Sint32 index)
+void ClassEngine::Normalise(const int x, const int y, const Sint32 index)
 {
-    for (int i = 0; i < this->engineParts[index].pointAmount; i++)
-    {
-        this->engineParts[index].shape[i].x += centre.x;
-        this->engineParts[index].shape[i].y += centre.y;
-    }
+    if (this->engineParts[index].shape != nullptr)
+        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+        {
+            this->engineParts[index].shape[i].x += x;
+            this->engineParts[index].shape[i].y += y;
+        }
+}
+
+void ClassEngine::NormaliseY(const int y, const Sint32 index)
+{
+    if (this->engineParts[index].shape != nullptr)
+        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+            this->engineParts[index].shape[i].y += y;
+}
+
+void ClassEngine::NormaliseX(const int x, const Sint32 index)
+{
+        if (this->engineParts[index].shape != nullptr)
+        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+            this->engineParts[index].shape[i].x += x;
 }
 
 void ClassEngine::LoadShape(const char *path, const Sint32 index)

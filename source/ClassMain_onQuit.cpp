@@ -9,7 +9,7 @@ void ClassMain::onQuit()
     if (this->en)
         delete this->en;
     this->en = nullptr;
-
+    
     if (this->renderer)
         SDL_DestroyRenderer(this->renderer);
     this->renderer = nullptr;
@@ -17,7 +17,7 @@ void ClassMain::onQuit()
     if (this->window)
         SDL_DestroyWindow(this->window);
     this->window = nullptr;
-    
+
     IMG_Quit();
     TTF_Quit();
     SDL_Quit();

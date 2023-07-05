@@ -6,5 +6,6 @@ void ClassMain::onLoop()
     std::cout << "void ClassMain::onLoop()\n";
 #endif
 
-
+    this->en->NormaliseY(5, 1);
+    SDL_Delay(1000);
 }

@@ -25,10 +25,13 @@ bool ClassMain::onInit()
     this->en = new ClassEngine(ClassEngine::EngineType::R4);
     if (!this->en)
         return false;
-    SDL_Point centre = {320, 240};
-    this->en->Normalise(centre, 0);
+    
+    SDL_Point centre;
+    SDL_GetWindowSize(this->window, &centre.x, &centre.y);
+    centre.x /= 2; centre.y /= 2;
+    this->en->Normalise(centre.x, centre.y, 0);
     centre.y -= 30;
-    this->en->Normalise(centre, 1);
+    this->en->Normalise(centre.x, centre.y, 1);
 
     return true;
 }

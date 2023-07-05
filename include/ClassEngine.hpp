@@ -33,7 +33,9 @@ public:
     ~ClassEngine();
 
     inline const EnginePart* GetPart(int index = 0) { return &this->engineParts[index]; }
-    void Normalise(const SDL_Point& centre, const Sint32 index);
+    void Normalise(const Sint32 x, const Sint32 y, const Sint32 index);
+    void NormaliseX(const Sint32 x, const Sint32 index);
+    void NormaliseY(const Sint32 y, const Sint32 index);
 
 private:
 
