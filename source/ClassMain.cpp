@@ -10,6 +10,7 @@ ClassMain::ClassMain()
     this->appRunning = true;
     this->window = nullptr;
     this->renderer = nullptr;
+    this->mus = nullptr;
 }
 
 ClassMain::~ClassMain()

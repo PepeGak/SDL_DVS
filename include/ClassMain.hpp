@@ -39,6 +39,7 @@ private:
     void onExit() override;
 
     ClassEngine* en;
+    ClassMusic* mus;
 };
 
 #endif //_CLASS_MAIN_HPP_
