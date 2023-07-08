@@ -11,6 +11,7 @@ ClassMain::ClassMain()
     this->window = nullptr;
     this->renderer = nullptr;
     this->mus = nullptr;
+    this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
 }
 
 ClassMain::~ClassMain()

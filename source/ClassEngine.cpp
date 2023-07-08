@@ -55,9 +55,9 @@ ClassEngine::~ClassEngine()
     
 }
 
-void ClassEngine::Normalise(const int x, const int y, const Sint32 index)
+void ClassEngine::Normalise(const double x, const double y, const Sint32 index)
 {
-    if (this->engineParts[index].shape != nullptr)
+    if (this->engineParts[index].shape)
         for (int i = 0; i < this->engineParts[index].pointAmount; i++)
         {
             this->engineParts[index].shape[i].x += x;
@@ -65,16 +65,26 @@ void ClassEngine::Normalise(const int x, const int y, const Sint32 index)
         }
 }
 
-void ClassEngine::NormaliseY(const int y, const Sint32 index)
+void ClassEngine::NormaliseY(const double y, const Sint32 index)
 {
-    if (this->engineParts[index].shape != nullptr)
+    if (this->engineParts[index].shape)
         for (int i = 0; i < this->engineParts[index].pointAmount; i++)
             this->engineParts[index].shape[i].y += y;
 }
 
-void ClassEngine::NormaliseX(const int x, const Sint32 index)
+void ClassEngine::Scale(const double k, const Sint32 index)
 {
-        if (this->engineParts[index].shape != nullptr)
+    if (this->engineParts[index].shape)
+        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+            {
+                this->engineParts[index].shape[i].x *= (k < 0.0 ? -k : k);
+                this->engineParts[index].shape[i].y *= (k < 0.0 ? -k : k);
+            }
+}
+
+void ClassEngine::NormaliseX(const double x, const Sint32 index)
+{
+        if (this->engineParts[index].shape)
         for (int i = 0; i < this->engineParts[index].pointAmount; i++)
             this->engineParts[index].shape[i].x += x;
 }
@@ -91,14 +101,14 @@ void ClassEngine::LoadShape(const char *path, const Sint32 index)
         std::cout << "ClassEngine Load error\n";
         return;
     }
-    this->engineParts[index].pointAmount = fin.tellg() / sizeof(SDL_Point);
+    this->engineParts[index].pointAmount = fin.tellg() / sizeof(SDL_FPoint);
     fin.seekg(std::ios::beg);
 
-    this->engineParts[index].shape = new SDL_Point[this->engineParts[index].pointAmount];
+    this->engineParts[index].shape = new SDL_FPoint[this->engineParts[index].pointAmount];
     SDL_memset(this->engineParts[index].shape, 0, this->engineParts[index].pointAmount);
     for (int i = 0; i < this->engineParts[index].pointAmount; i++)
     {
-        fin.read((char *)&this->engineParts[index].shape[i], sizeof(SDL_Point));
+        fin.read((char *)&this->engineParts[index].shape[i], sizeof(SDL_FPoint));
     }
 
     fin.close();

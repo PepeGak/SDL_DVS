@@ -26,6 +26,26 @@ void ClassEvent::onEvent(SDL_Event *ev)
         this->onExit();
         break;
 
+    case SDL_KEYDOWN:
+        this->onKeyDown(ev->key.keysym.sym, ev->key.keysym.mod, ev->key.keysym.scancode);
+        break;
+
+    case SDL_KEYUP:
+        this->onKeyUp(ev->key.keysym.sym, ev->key.keysym.mod, ev->key.keysym.scancode);
+        break;
+
+    case SDL_MOUSEBUTTONDOWN:
+        switch (ev->button.button)
+        {
+        case SDL_BUTTON_LEFT:
+            this->onLMouseDown(ev->button.x, ev->button.y);
+            break;
+        
+        default:
+            break;
+        }
+        break;
+
     default:
         break;
     }

@@ -22,9 +22,16 @@ public:
 	    V8
     };
 
+    /*
+    * Структура, описываюшая различные запчасти двигателя
+    */
     struct EnginePart
     {
-        SDL_Point* shape;
+    public:
+        EnginePart() : shape(nullptr), pointAmount(0) {}
+        ~EnginePart() {};
+
+        SDL_FPoint* shape;
         Sint32 pointAmount;
     };
 
@@ -32,10 +39,11 @@ public:
     ClassEngine(const char* path);
     ~ClassEngine();
 
-    inline const EnginePart* GetPart(int index = 0) { return &this->engineParts[index]; }
-    void Normalise(const Sint32 x, const Sint32 y, const Sint32 index);
-    void NormaliseX(const Sint32 x, const Sint32 index);
-    void NormaliseY(const Sint32 y, const Sint32 index);
+    inline const EnginePart* GetPart(Sint32 index = 0) { return &this->engineParts[index]; }
+    void Normalise(const double x, const double y, const Sint32 index);
+    void NormaliseX(const double x, const Sint32 index);
+    void NormaliseY(const double y, const Sint32 index);
+    void Scale(const double k, const Sint32 index);
 
 private:
 

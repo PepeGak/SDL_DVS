@@ -17,6 +17,9 @@
 #include "ClassMusic.hpp"
 #include "ClassRenderer.hpp"
 
+#define _DVS_DEBUG_
+//#undef _DVS_DEBUG_
+
 class ClassMain : private ClassEvent
 {
 public:
@@ -37,9 +40,18 @@ private:
     bool appRunning;
 
     void onExit() override;
+    void onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode) override;
+    void onKeyUp(SDL_Keycode sym, Uint16 mod, Uint16 scancode) override;
+    void onLMouseDown(Sint32 xm, Sint32 ym) override;
 
     ClassEngine* en;
     ClassMusic* mus;
+    
+    enum class MenuList
+    {
+        HELP_TEXT = 0,
+        ENGINE_SCREEN
+    } menu_options;
 };
 
 #endif //_CLASS_MAIN_HPP_
