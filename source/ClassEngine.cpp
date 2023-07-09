@@ -58,24 +58,30 @@ ClassEngine::~ClassEngine()
 void ClassEngine::Normalise(const float x, const float y, const Sint32 index)
 {
     if (this->engineParts[index].shape)
-        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
-        {
-            this->engineParts[index].shape[i].x += x;
-            this->engineParts[index].shape[i].y += y;
-        }
+        this->engineParts[index].centre = {x, y};
 }
 
 void ClassEngine::NormaliseY(const float y, const Sint32 index)
 {
     if (this->engineParts[index].shape)
-        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+        for (Sint32 i = 0; i < this->engineParts[index].pointAmount; i++)
             this->engineParts[index].shape[i].y += y;
+}
+
+void ClassEngine::Scale(const float k, const Sint32 index)
+{
+    if (this->engineParts[index].shape)
+        for (Sint32 i = 0; i < this->engineParts[index].pointAmount; i++)
+        {
+            this->engineParts[index].shape[i].x *= (k < 0 ? -k : k);
+            this->engineParts[index].shape[i].y *= (k < 0 ? -k : k);
+        }
 }
 
 void ClassEngine::NormaliseX(const float x, const Sint32 index)
 {
-        if (this->engineParts[index].shape)
-        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+    if (this->engineParts[index].shape)
+        for (Sint32 i = 0; i < this->engineParts[index].pointAmount; i++)
             this->engineParts[index].shape[i].x += x;
 }
 
@@ -96,7 +102,7 @@ void ClassEngine::LoadShape(const char *path, const Sint32 index)
 
     this->engineParts[index].shape = new SDL_FPoint[this->engineParts[index].pointAmount];
     SDL_memset(this->engineParts[index].shape, 0, this->engineParts[index].pointAmount);
-    for (int i = 0; i < this->engineParts[index].pointAmount; i++)
+    for (Sint32 i = 0; i < this->engineParts[index].pointAmount; i++)
     {
         fin.read((char *)&this->engineParts[index].shape[i], sizeof(SDL_FPoint));
     }

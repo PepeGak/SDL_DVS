@@ -59,5 +59,15 @@ void ClassRenderer::Draw(SDL_Renderer *renderer, const ClassEngine::EnginePart* 
     if (!renderer || !shape)
         return;
 
-    SDL_RenderDrawLinesF(renderer, shape->shape, shape->pointAmount);
+    SDL_FPoint* points = new SDL_FPoint[shape->pointAmount];
+    SDL_memset(points, 0, shape->pointAmount);
+    
+    for (Sint32 i = 0; i < shape->pointAmount; i++)
+    {
+        points[i] = { shape->shape[i].x + shape->centre.x, shape->shape[i].y + shape->centre.y };
+    }
+
+    SDL_RenderDrawLinesF(renderer, points, shape->pointAmount);
+    delete[] points;
+    points = nullptr;
 }

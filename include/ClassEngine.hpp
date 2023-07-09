@@ -28,11 +28,12 @@ public:
     struct EnginePart
     {
     public:
-        EnginePart() : shape(nullptr), pointAmount(0) {}
+        EnginePart() : shape(nullptr), pointAmount(0), centre({0, 0}) {}
         ~EnginePart() {};
 
         SDL_FPoint* shape;
         Sint32 pointAmount;
+        SDL_FPoint centre;
     };
 
     ClassEngine(EngineType type);
@@ -43,6 +44,7 @@ public:
     void Normalise(const float x, const float y, const Sint32 index);
     void NormaliseX(const float x, const Sint32 index);
     void NormaliseY(const float y, const Sint32 index);
+    void Scale(const float k, const Sint32 index);
 
 private:
 
@@ -51,7 +53,7 @@ private:
     
 
 protected:
-
+    float v;
 };
 
 #endif //_CLASS_ENGINE_HPP_

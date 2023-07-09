@@ -32,8 +32,7 @@ bool ClassMain::onInit()
     centre.x /= 2; centre.y /= 2;
     centreF = {centre.x, centre.y};
     this->en->Normalise(centreF.x, centreF.y, 0);
-    centreF.y -= 30;
-    this->en->Normalise(centreF.x, centreF.y, 1);
+    this->en->Normalise(centreF.x, centreF.y - 30, 1);
 
     this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 16);
     if (!this->font)
