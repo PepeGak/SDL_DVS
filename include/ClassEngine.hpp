@@ -40,10 +40,9 @@ public:
     ~ClassEngine();
 
     inline const EnginePart* GetPart(Sint32 index = 0) { return &this->engineParts[index]; }
-    void Normalise(const double x, const double y, const Sint32 index);
-    void NormaliseX(const double x, const Sint32 index);
-    void NormaliseY(const double y, const Sint32 index);
-    void Scale(const double k, const Sint32 index);
+    void Normalise(const float x, const float y, const Sint32 index);
+    void NormaliseX(const float x, const Sint32 index);
+    void NormaliseY(const float y, const Sint32 index);
 
 private:
 

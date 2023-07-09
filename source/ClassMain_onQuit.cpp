@@ -6,6 +6,10 @@ void ClassMain::onQuit()
     std::cout << "int ClassMain::onQuit()\n";
 #endif
 
+    if (this->font)
+        TTF_CloseFont(this->font);
+    this->font = nullptr;
+
     if (this->en)
         delete this->en;
     this->en = nullptr;

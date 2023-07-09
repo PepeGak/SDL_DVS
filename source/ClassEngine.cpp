@@ -55,7 +55,7 @@ ClassEngine::~ClassEngine()
     
 }
 
-void ClassEngine::Normalise(const double x, const double y, const Sint32 index)
+void ClassEngine::Normalise(const float x, const float y, const Sint32 index)
 {
     if (this->engineParts[index].shape)
         for (int i = 0; i < this->engineParts[index].pointAmount; i++)
@@ -65,24 +65,14 @@ void ClassEngine::Normalise(const double x, const double y, const Sint32 index)
         }
 }
 
-void ClassEngine::NormaliseY(const double y, const Sint32 index)
+void ClassEngine::NormaliseY(const float y, const Sint32 index)
 {
     if (this->engineParts[index].shape)
         for (int i = 0; i < this->engineParts[index].pointAmount; i++)
             this->engineParts[index].shape[i].y += y;
 }
 
-void ClassEngine::Scale(const double k, const Sint32 index)
-{
-    if (this->engineParts[index].shape)
-        for (int i = 0; i < this->engineParts[index].pointAmount; i++)
-            {
-                this->engineParts[index].shape[i].x *= (k < 0.0 ? -k : k);
-                this->engineParts[index].shape[i].y *= (k < 0.0 ? -k : k);
-            }
-}
-
-void ClassEngine::NormaliseX(const double x, const Sint32 index)
+void ClassEngine::NormaliseX(const float x, const Sint32 index)
 {
         if (this->engineParts[index].shape)
         for (int i = 0; i < this->engineParts[index].pointAmount; i++)

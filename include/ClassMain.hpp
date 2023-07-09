@@ -31,6 +31,7 @@ public:
 private:
     SDL_Window* window;
     SDL_Renderer* renderer;
+    TTF_Font* font;
 
     bool onInit();
     void onEvent(SDL_Event* ev) override;
@@ -46,6 +47,7 @@ private:
 
     ClassEngine* en;
     ClassMusic* mus;
+    
     
     enum class MenuList
     {

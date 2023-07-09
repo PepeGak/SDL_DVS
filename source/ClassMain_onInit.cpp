@@ -26,12 +26,18 @@ bool ClassMain::onInit()
     if (!this->en)
         return false;
     
+    SDL_FPoint centreF;
     SDL_Point centre;
     SDL_GetWindowSize(this->window, &centre.x, &centre.y);
     centre.x /= 2; centre.y /= 2;
-    this->en->Normalise(centre.x, centre.y, 0);
-    centre.y -= 30;
-    this->en->Normalise(centre.x, centre.y, 1);
+    centreF = {centre.x, centre.y};
+    this->en->Normalise(centreF.x, centreF.y, 0);
+    centreF.y -= 30;
+    this->en->Normalise(centreF.x, centreF.y, 1);
+
+    this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 16);
+    if (!this->font)
+        return false;
 
     return true;
 }

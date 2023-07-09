@@ -29,5 +29,11 @@ void ClassMain::onRender()
     ClassRenderer::Draw(this->renderer, this->en->GetPart(0));
     ClassRenderer::Draw(this->renderer, this->en->GetPart(1));
 
+    SDL_SetRenderDrawColor(this->renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+    
+    SDL_Rect where = {50, 50, 32, 16};
+    SDL_Colour colour = {0, 255, 0};
+    ClassRenderer::Draw(this->renderer, this->font, "Hi!", where, colour);
+
     SDL_RenderPresent(this->renderer);
 }
