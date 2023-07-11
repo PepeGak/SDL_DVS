@@ -5,6 +5,7 @@ ClassEvent::ClassEvent()
 #ifdef _DVS_DEBUG_
     std::cout << "ClassEvent::ClassEvent()\n";
 #endif
+
 }
 
 ClassEvent::~ClassEvent()
@@ -12,6 +13,7 @@ ClassEvent::~ClassEvent()
 #ifdef _DVS_DEBUG_
     std::cout << "ClassEvent::~ClassEvent()\n";
 #endif
+
 }
 
 void ClassEvent::onEvent(SDL_Event *ev)

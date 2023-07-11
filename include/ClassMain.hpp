@@ -50,6 +50,9 @@ private:
     ClassEngine* en;
     ClassMusic* mus;
     
+    Uint32 FPS;
+    Uint32 frameDelay;
+    Uint32 frameStart, frameTime;
     
     enum class MenuList
     {

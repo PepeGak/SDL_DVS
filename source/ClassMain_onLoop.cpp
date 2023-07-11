@@ -9,7 +9,7 @@ void ClassMain::onLoop()
     switch (this->menu_options)
     {
     case ClassMain::MenuList::ENGINE_SCREEN:
-        
+        this->en->NormaliseY(-5.0f, 1);
         break;
 
     case ClassMain::MenuList::HELP_TEXT:
@@ -18,5 +18,4 @@ void ClassMain::onLoop()
     default:
         break;
     }
-    SDL_Delay(500);
 }

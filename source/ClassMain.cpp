@@ -12,6 +12,9 @@ ClassMain::ClassMain()
     this->renderer = nullptr;
     this->mus = nullptr;
     this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
+    this->FPS = 60;
+    this->frameDelay = 10000 / FPS;
+    this->frameStart = this->frameTime = 0;
 }
 
 ClassMain::~ClassMain()
@@ -38,11 +41,17 @@ int ClassMain::onExecute()
     SDL_Event even;
     while (this->appRunning)
     {
+        this->frameStart = SDL_GetTicks();
+
         while (SDL_PollEvent(&even))
             this->onEvent(&even);
 
         this->onRender();
         this->onLoop();
+
+        this->frameTime = SDL_GetTicks() - this->frameStart;
+        if (this->frameDelay > this->frameTime)
+            SDL_Delay(this->frameDelay - this->frameTime);
     }
 
     this->onQuit();
