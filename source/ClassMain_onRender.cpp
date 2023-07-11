@@ -6,6 +6,33 @@ void ClassMain::onRender()
     std::cout << "void ClassMain::onRender()\n";
 #endif
 
+    SDL_RenderClear(this->renderer);
+    switch (this->menu_options)
+    {
+    case ClassMain::MenuList::ENGINE_SCREEN:
+        this->onRender_Screen();
+        break;
+
+    case ClassMain::MenuList::HELP_TEXT:
+        this->onRender_Help();
+        break;
+    }
+
+    SDL_RenderPresent(this->renderer);
+}
+
+void ClassMain::onRender_Help()
+{
+    SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+    
+    std::string help_text = "1";
+    int w, h;
+    TTF_SizeUTF8(this->font, help_text.c_str(), &w, &h);
+    ClassRenderer::Draw(this->renderer, this->font, help_text.c_str(), {100, 100, w, h}, {255, 0, 0});
+}
+
+void ClassMain::onRender_Screen()
+{
     SDL_Point some_points[10] =
         {
             {10, 10},
@@ -30,10 +57,8 @@ void ClassMain::onRender()
     ClassRenderer::Draw(this->renderer, this->en->GetPart(1));
 
     SDL_SetRenderDrawColor(this->renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
-    
+
     SDL_Rect where = {50, 50, 32, 16};
     SDL_Colour colour = {0, 255, 0};
     ClassRenderer::Draw(this->renderer, this->font, "Hi!", where, colour);
-
-    SDL_RenderPresent(this->renderer);
 }

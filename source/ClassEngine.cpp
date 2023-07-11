@@ -55,6 +55,34 @@ ClassEngine::~ClassEngine()
     
 }
 
+float ClassEngine::GetPartWidth(const Sint32 index)
+{
+    float max = this->engineParts[index].shape[0].x;
+    float min = max;
+    for (Sint32 i = 0; i < this->engineParts[index].pointAmount; i++)
+    {
+        if (this->engineParts[index].shape[i].x >= max)
+            max = this->engineParts[index].shape[i].x;
+        if (this->engineParts[index].shape[i].x <= min)
+            min = this->engineParts[index].shape[i].x;
+    }
+    return max - min;
+}
+
+float ClassEngine::GetPartHeight(const Sint32 index)
+{
+    float max = this->engineParts[index].shape[0].y;
+    float min = max;
+    for (Sint32 i = 0; i < this->engineParts[index].pointAmount; i++)
+    {
+        if (this->engineParts[index].shape[i].y >= max)
+            max = this->engineParts[index].shape[i].y;
+        if (this->engineParts[index].shape[i].y <= min)
+            min = this->engineParts[index].shape[i].y;
+    }
+    return max - min;
+}
+
 void ClassEngine::Normalise(const float x, const float y, const Sint32 index)
 {
     if (this->engineParts[index].shape)

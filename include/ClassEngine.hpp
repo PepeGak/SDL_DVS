@@ -40,7 +40,9 @@ public:
     ClassEngine(const char* path);
     ~ClassEngine();
 
-    inline const EnginePart* GetPart(Sint32 index = 0) { return &this->engineParts[index]; }
+    inline const EnginePart* GetPart(const Sint32 index) { return &this->engineParts[index]; }
+    float GetPartWidth(const Sint32 index);
+    float GetPartHeight(const Sint32 index);
     void Normalise(const float x, const float y, const Sint32 index);
     void NormaliseX(const float x, const Sint32 index);
     void NormaliseY(const float y, const Sint32 index);
@@ -49,11 +51,12 @@ public:
 private:
 
     std::vector<ClassEngine::EnginePart> engineParts;
-    void LoadShape(const char* path, const Sint32 index = 0);
+    void LoadShape(const char* path, const Sint32 index);
     
 
 protected:
     float v;
+    int stroke; //такт двигателя
 };
 
 #endif //_CLASS_ENGINE_HPP_

@@ -18,7 +18,7 @@
 #include "ClassRenderer.hpp"
 
 #define _DVS_DEBUG_
-//#undef _DVS_DEBUG_
+#undef _DVS_DEBUG_
 
 class ClassMain : private ClassEvent
 {
@@ -36,6 +36,8 @@ private:
     bool onInit();
     void onEvent(SDL_Event* ev) override;
     void onRender();
+    void onRender_Help();
+    void onRender_Screen();
     void onLoop();
     void onQuit();
     bool appRunning;
