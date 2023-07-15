@@ -25,39 +25,29 @@ void ClassMain::onRender()
 
 void ClassMain::onRender_Help()
 {
-    std::string help_text = "1";
-    int w, h;
-    TTF_SizeUTF8(this->font, help_text.c_str(), &w, &h);
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
-    ClassRenderer::Draw(this->renderer, this->font, help_text.c_str(), {100, 100, w, h});
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
-    ClassRenderer::Draw(this->renderer, {320, 240}, 20, 0, 300);
+    std::string help[] = 
+    {
+        "Q - завести/заглушить двигатель",
+        ""
+    };
 }
 
 void ClassMain::onRender_Screen()
 {
-    SDL_Point some_points[10] =
-        {
-            {10, 10},
-            {10, 15},
-            {15, 50},
-            {50, 60},
-            {90, 20},
-            {80, 50},
-            {50, 240},
-            {500, 40},
-            {40, 470},
-            {10, 10}};
-
-    SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
-    ClassRenderer::Draw(this->renderer, some_points, 10);
-
     SDL_SetRenderDrawColor(this->renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-    ClassRenderer::Draw(this->renderer, this->en->GetPart(0));
-    ClassRenderer::Draw(this->renderer, this->en->GetPart(1));
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(0));
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(1));
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(2));
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(3));
 
-    SDL_SetRenderDrawColor(this->renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(this->renderer, 128, 128, 128, 30);
+    int w, h; SDL_GetWindowSize(this->window, &w, &h);
+    SDL_RenderDrawLineF(this->renderer, 
+                    this->en->GetPart(0)->centre.x + 100 * 1.5f, 0,
+                    this->en->GetPart(0)->centre.x + 100 * 1.5f, h - 400);
 
-    SDL_Rect where = {50, 50, 32, 16};
-    ClassRenderer::Draw(this->renderer, this->font, "Hi!", where);
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_Rect where = {50, 50, 0, 0};
+    TTF_SizeUTF8(this->font, "Зажигания в цилиндрах", &where.w, &where.h);
+    ClassRenderer::DrawText(this->renderer, this->font, "Зажигания в цилиндрах", where);
 }

@@ -22,6 +22,8 @@ ClassEngine::ClassEngine(EngineType type)
         };
         this->LoadShape("./assets/engine_assets/R4/engine_body.dat", 0);
         this->LoadShape("./assets/engine_assets/R4/piston.dat", 1);
+        this->LoadShape("./assets/engine_assets/R4/engine_head.dat", 2);
+        this->LoadShape("./assets/engine_assets/R4/crank.dat", 3);
         break;
 
     case EngineType::V8:
@@ -104,6 +106,17 @@ void ClassEngine::Scale(const float k, const Sint32 index)
             this->engineParts[index].shape[i].x *= (k < 0 ? -k : k);
             this->engineParts[index].shape[i].y *= (k < 0 ? -k : k);
         }
+}
+
+void ClassEngine::Scale(const float k)
+{
+    for (Sint32 i = 0; i < this->engineParts.size(); i++)
+        if(this->engineParts[i].shape)
+            for (Sint32 index = 0; index < this->engineParts[i].pointAmount; index++)
+            {
+                this->engineParts[i].shape[index].x *= (k < 0 ? -k : k);
+                this->engineParts[i].shape[index].y *= (k < 0 ? -k : k);
+            }
 }
 
 void ClassEngine::NormaliseX(const float x, const Sint32 index)

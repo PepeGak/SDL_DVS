@@ -47,16 +47,19 @@ public:
     void NormaliseX(const float x, const Sint32 index);
     void NormaliseY(const float y, const Sint32 index);
     void Scale(const float k, const Sint32 index);
+    void Scale(const float k);
 
 private:
 
     std::vector<ClassEngine::EnginePart> engineParts;
     void LoadShape(const char* path, const Sint32 index);
-    
 
 protected:
-    float v;
-    int stroke; //такт двигателя
+    float fuel_ratio; //Коэф. избытка воздуха
+    float filling_ratio; //Коэффициент наполнения
+    Uint32 RPM; //Кол-во оборотов в минуту
+    float efficiency; //КПД
+    Uint32 stroke; //такт двигателя
 };
 
 #endif //_CLASS_ENGINE_HPP_

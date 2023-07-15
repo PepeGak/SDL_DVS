@@ -14,7 +14,7 @@ bool ClassMain::onInit()
         return false;
 
     this->window = SDL_CreateWindow("SDL_DVS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                                    640, 480, SDL_WINDOW_SHOWN);
+                                    1024, 640, SDL_WINDOW_SHOWN);
     if (!this->window)
         return false;
 
@@ -25,16 +25,19 @@ bool ClassMain::onInit()
     this->en = new ClassEngine(ClassEngine::EngineType::R4);
     if (!this->en)
         return false;
-    
-    SDL_FPoint centreF;
+
     SDL_Point centre;
     SDL_GetWindowSize(this->window, &centre.x, &centre.y);
-    centre.x /= 2; centre.y /= 2;
-    centreF = {centre.x, centre.y};
-    this->en->Normalise(centreF.x, centreF.y, 0);
-    this->en->Normalise(centreF.x, centreF.y - 30, 1);
+    centre.x /= 2;
+    centre.y /= 2; centre.y -= 30;
+    const float k = 1.5f;
+    this->en->Normalise(centre.x, centre.y, 0);
+    this->en->Normalise(centre.x, centre.y - 50 * k, 1);
+    this->en->Normalise(centre.x, centre.y - 140 * k, 2);
+    this->en->Normalise(centre.x, centre.y, 3);
+    this->en->Scale(k);
 
-    this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 16);
+    this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 20);
     if (!this->font)
         return false;
 
