@@ -34,11 +34,15 @@ void ClassMain::onRender_Help()
 
 void ClassMain::onRender_Screen()
 {
-    SDL_SetRenderDrawColor(this->renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(this->renderer, 255, 192, 203, SDL_ALPHA_OPAQUE);
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(0));
+    SDL_SetRenderDrawColor(this->renderer, 104, 104, 104, SDL_ALPHA_OPAQUE);
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(1));
+    SDL_SetRenderDrawColor(this->renderer, 255, 192, 203, SDL_ALPHA_OPAQUE);
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(2));
+    SDL_SetRenderDrawColor(this->renderer, 211, 211, 211, SDL_ALPHA_OPAQUE);
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(3));
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(4));
 
     SDL_SetRenderDrawColor(this->renderer, 128, 128, 128, 30);
     int w, h; SDL_GetWindowSize(this->window, &w, &h);

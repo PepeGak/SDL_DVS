@@ -28,11 +28,11 @@ public:
     struct EnginePart
     {
     public:
-        EnginePart() : shape(nullptr), pointAmount(0), centre({0, 0}) {}
+        EnginePart() : texture(nullptr), shape_rect({0, 0, 0, 0}), centre({0, 0}) {}
         ~EnginePart() {};
 
-        SDL_FPoint* shape;
-        Sint32 pointAmount;
+        SDL_Texture* texture;
+        SDL_FRect shape_rect;
         SDL_FPoint centre;
     };
 
