@@ -6,6 +6,7 @@
 #define _CLASS_ENGINE_HPP_
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -13,13 +14,13 @@
 class ClassEngine
 {
 public:
-    /*
-    * Вид двигателя
-    */
-    enum class EngineType
+
+    enum class PartNames
     {
-	    R4 = 0,
-	    V8
+        ENGINE_BODY = 0,
+        PISTON,
+        CRANK,
+        LINK_ROD
     };
 
     /*
@@ -28,29 +29,30 @@ public:
     struct EnginePart
     {
     public:
-        EnginePart() : texture(nullptr), shape_rect({0, 0, 0, 0}), centre({0, 0}) {}
+        EnginePart() : texture(nullptr), x(0), y(0), angle(0.0f) {}
         ~EnginePart() {};
 
         SDL_Texture* texture;
-        SDL_FRect shape_rect;
-        SDL_FPoint centre;
+        Sint32 x;
+        Sint32 y;
+        float angle;
     };
 
-    ClassEngine(EngineType type);
-    ClassEngine(const char* path);
+    ClassEngine(SDL_Renderer* renderer);
     ~ClassEngine();
 
-    inline const EnginePart* GetPart(const Sint32 index) { return &this->engineParts[index]; }
-    float GetPartWidth(const Sint32 index);
-    float GetPartHeight(const Sint32 index);
-    void Normalise(const float x, const float y, const Sint32 index);
-    void NormaliseX(const float x, const Sint32 index);
-    void NormaliseY(const float y, const Sint32 index);
-    void Scale(const float k, const Sint32 index);
-    void Scale(const float k);
+    inline const EnginePart* GetPart(PartNames index) { return &this->engineParts[static_cast<Uint32>(index)]; }
+    inline void SetPartX(const PartNames index, const Sint32 x) { this->engineParts[static_cast<Uint32>(index)].x = x; }
+    inline void SetPartY(const PartNames index, const Sint32 y) { this->engineParts[static_cast<Uint32>(index)].y = y; }
+    void SetPartAngle(const PartNames index, float angle);
+    inline const auto& GetParts() { return this->engineParts; }
+    
+    
+    Uint32 stroke; //такт двигателя
 
 private:
 
+    SDL_Renderer* renderer;
     std::vector<ClassEngine::EnginePart> engineParts;
     void LoadShape(const char* path, const Sint32 index);
 
@@ -59,7 +61,6 @@ protected:
     float filling_ratio; //Коэффициент наполнения
     Uint32 RPM; //Кол-во оборотов в минуту
     float efficiency; //КПД
-    Uint32 stroke; //такт двигателя
 };
 
 #endif //_CLASS_ENGINE_HPP_

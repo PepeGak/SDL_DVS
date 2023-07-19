@@ -14,7 +14,7 @@ void ClassRenderer::DrawLinesF(SDL_Renderer *renderer, const SDL_FPoint points[]
 void ClassRenderer::DrawLines(SDL_Renderer *renderer, const SDL_Point points[], const Sint32 amount)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::Draw(SDL_Renderer*, SDL_Point*, Sint32)\n";
+    std::cout << "void ClassRenderer::DrawLines(SDL_Renderer*, const SDL_Point*, const Sint32)\n";
 #endif
     if (!renderer || !points)
         return;
@@ -23,33 +23,34 @@ void ClassRenderer::DrawLines(SDL_Renderer *renderer, const SDL_Point points[], 
 }
 
 void ClassRenderer::DrawCircle(SDL_Renderer *renderer, const SDL_FPoint centre, const Sint32 p,
-                            const Uint32 phi_beg, const Uint32 phi_end = 0)
+                               const Uint32 phi_beg, const Uint32 phi_end = 0)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::Draw(SDL_Renderer*, SDL_Point, Sint32, Uint32, Uint32)\n";
+    std::cout << "void ClassRenderer::DrawCircle(SDL_Renderer*, SDL_Point, Sint32, Uint32, Uint32)\n";
 #endif
 
     if (!renderer)
         return;
 
-    SDL_FPoint* circle = new SDL_FPoint[phi_end - phi_beg + 1];
+    SDL_FPoint *circle = new SDL_FPoint[phi_end - phi_beg + 1];
     for (Sint32 a = phi_beg; a <= phi_end; a++)
     {
         circle[a - phi_beg].x = centre.x + p * SDL_cosf(2 * M_PI * a / 360);
         circle[a - phi_beg].y = centre.y - p * SDL_sinf(2 * M_PI * a / 360);
     }
     SDL_RenderDrawLinesF(renderer, circle, phi_end - phi_beg + 1);
-    delete[] circle; circle = nullptr;
+    delete[] circle;
+    circle = nullptr;
 }
 
-void ClassRenderer::DrawEllips(SDL_Renderer *renderer, const SDL_FPoint centre, 
-                            const Sint32 a, const Sint32 b, const Uint32 phi_beg, 
-                            const Uint32 phi_end)
+void ClassRenderer::DrawEllips(SDL_Renderer *renderer, const SDL_FPoint centre,
+                               const Sint32 a, const Sint32 b, const Uint32 phi_beg,
+                               const Uint32 phi_end)
 {
     if (!renderer)
         return;
-    
-    SDL_FPoint* ellips = new SDL_FPoint[phi_end - phi_beg + 1];
+
+    SDL_FPoint *ellips = new SDL_FPoint[phi_end - phi_beg + 1];
     SDL_memset(ellips, 0, phi_end - phi_beg + 1);
     for (Uint32 phi = phi_beg; phi <= phi_end; phi++)
     {
@@ -57,14 +58,15 @@ void ClassRenderer::DrawEllips(SDL_Renderer *renderer, const SDL_FPoint centre,
         ellips[phi - phi_beg].y = centre.y - b * SDL_sinf(phi * 2 * M_PI / 360);
     }
     SDL_RenderDrawLinesF(renderer, ellips, phi_end - phi_beg + 1);
-    delete[] ellips; ellips = nullptr;
+    delete[] ellips;
+    ellips = nullptr;
 }
 
 void ClassRenderer::DrawText(SDL_Renderer *renderer, TTF_Font *font,
-                        const char *string, const SDL_Rect& where)
+                             const char *string, const SDL_Rect where)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::Draw(SDL_Renderer*, TTF_Font*, const char*, SDL_Rect, SDL_Colour)\n";
+    std::cout << "void ClassRenderer::DrawText(SDL_Renderer*, TTF_Font*, const char*, const SDL_Rect)\n";
 #endif
     if (!renderer || !font || !string)
         return;
@@ -79,14 +81,90 @@ void ClassRenderer::DrawText(SDL_Renderer *renderer, TTF_Font *font,
     SDL_DestroyTexture(textTexture); textTexture = nullptr;
 }
 
-void ClassRenderer::DrawPart(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape)
+void ClassRenderer::DrawPart(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape,
+                            const SDL_Point where)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::Draw(SDL_Renderer *renderer, const ClassEngine::EnginePart shape)\n";
+    std::cout << "void ClassRenderer::Draw(SDL_Renderer*, const ClassEngine::EnginePart)\n";
 #endif
 
     if (!renderer || !shape)
         return;
 
+    SDL_Rect dstRect;
+    dstRect.x = where.x;
+    dstRect.y = where.y;
+    SDL_QueryTexture(shape->texture, nullptr, nullptr, &dstRect.w, &dstRect.h);
+    dstRect.w *= 1.5; dstRect.h *= 1.5;
+    SDL_RenderCopy(renderer, shape->texture, nullptr, &dstRect);
+}
+
+void ClassRenderer::DrawPart(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassRenderer::DrawPart(SDL_Renderer *, const EnginePart *)\n";
+#endif
+
+    if (!renderer || !shape)
+        return;
+
+    SDL_Rect dstRect;
+    dstRect.x = shape->x;
+    dstRect.y = shape->y;
+    SDL_QueryTexture(shape->texture, nullptr, nullptr, &dstRect.w, &dstRect.h);
+    dstRect.w *= 1.5; dstRect.h *= 1.5;
+    SDL_RenderCopy(renderer, shape->texture, nullptr, &dstRect);
+}
+
+void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, 
+                                    const ClassEngine::EnginePart *shape, SDL_Point where, 
+                                    float angle, SDL_RendererFlip flip)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassRenderer::DrawTextureAngled(SDL_Renderer *, const EnginePart *, SDL_Point, float, SDL_RendererFlip)\n";
+#endif
+
+    if (!renderer || !shape)
+        return;
     
+    SDL_Rect dstRect;
+    dstRect.x = where.x;
+    dstRect.y = where.y;
+    SDL_QueryTexture(shape->texture, nullptr, nullptr, &dstRect.w, &dstRect.h);
+    dstRect.w *= 1.5; dstRect.h *= 1.5;
+    SDL_RenderCopyEx(renderer, shape->texture, nullptr, &dstRect, angle, nullptr, flip);
+}
+
+void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape, float angle, SDL_RendererFlip flip)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassRenderer::DrawTextureAngled(SDL_Renderer *, const EnginePart *, float, SDL_RendererFlip)\n";
+#endif
+
+    if (!renderer || !shape)
+        return;
+    
+    SDL_Rect dstRect;
+    dstRect.x = shape->x;
+    dstRect.y = shape->y;
+    SDL_QueryTexture(shape->texture, nullptr, nullptr, &dstRect.w, &dstRect.h);
+    dstRect.w *= 1.5; dstRect.h *= 1.5;
+    SDL_RenderCopyEx(renderer, shape->texture, nullptr, &dstRect, angle, nullptr, flip);
+}
+
+void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape, SDL_Point where, SDL_Point *around, float angle, SDL_RendererFlip flip)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *, SDL_Point, SDL_Point *, float, SDL_RendererFlip)\n";
+#endif
+
+    if (!renderer || !shape)
+        return;
+    
+    SDL_Rect dstRect;
+    dstRect.x = where.x;
+    dstRect.y = where.y;
+    SDL_QueryTexture(shape->texture, nullptr, nullptr, &dstRect.w, &dstRect.h);
+    dstRect.w *= 1.5; dstRect.h *= 1.5;
+    SDL_RenderCopyEx(renderer, shape->texture, nullptr, &dstRect, angle, around, flip);
 }

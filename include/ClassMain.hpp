@@ -32,6 +32,7 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     TTF_Font* font;
+    SDL_Point center;
 
     bool onInit();
     void onEvent(SDL_Event* ev) override;

@@ -10,6 +10,7 @@ ClassMain::ClassMain()
     this->appRunning = true;
     this->window = nullptr;
     this->renderer = nullptr;
+    this->center = {0, 0};
     this->mus = nullptr;
     this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
     this->FPS = 60;

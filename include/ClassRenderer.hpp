@@ -19,8 +19,16 @@ public:
     static void DrawEllips(SDL_Renderer* renderer, const SDL_FPoint centre, const Sint32 a, 
                     const Sint32 b, const Uint32 phi_beg, const Uint32 phi_end);    
     static void DrawText(SDL_Renderer* renderer, TTF_Font* font, 
-                    const char* string, const SDL_Rect& where); //Рисовка текста
+                    const char* string, const SDL_Rect where); //Рисовка текста
+    static void DrawPart(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape, 
+                    const SDL_Point where); //Рисовка контура детали
     static void DrawPart(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape); //Рисовка контура детали
+    static void DrawTextureAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
+                    SDL_Point where, float angle, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE); //Рисовка контура детали под углом
+    static void DrawTextureAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
+                    float angle, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE); //Рисовка контура детали под углом
+    static void DrawTextureAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
+                    SDL_Point where, SDL_Point* around, float angle, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE); //Рисовка контура детали под углом
 };
 
 #endif //_CLASS_RENDERER_HPP_

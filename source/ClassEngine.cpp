@@ -1,45 +1,32 @@
 #include "ClassEngine.hpp"
 
-ClassEngine::ClassEngine(EngineType type)
+ClassEngine::ClassEngine(SDL_Renderer *renderer)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "ClassEngine::ClassEngine(EngineType)\n";
+    std::cout << "ClassEngine::ClassEngine(EngineType, SDL_Renderer*)\n";
 #endif
+    this->fuel_ratio = 0;
+    this->filling_ratio = 0;
+    this->RPM = 0;
+    this->efficiency = 0;
+    this->stroke = 0;
+    this->renderer = renderer;
 
-    switch (type)
+    // Внешний каркас, Поршень, Коленвал, Шатун, 2 Клапана
+    this->engineParts.reserve(6);
+    this->engineParts = 
     {
-    case EngineType::R4:
-        //Внешний каркас, Поршень, Верх, Коленвал, Шатун, 2 Клапана
-        this->engineParts.reserve(7);
-        this->engineParts = 
-        {
-            ClassEngine::EnginePart(),
-            ClassEngine::EnginePart(),
-            ClassEngine::EnginePart(),
-            ClassEngine::EnginePart(),
-            ClassEngine::EnginePart(),
-            ClassEngine::EnginePart(),
-            ClassEngine::EnginePart()
-        };
-        this->LoadShape("./assets/engine_assets/R4/engine_body.dat", 0);
-        this->LoadShape("./assets/engine_assets/R4/piston.dat", 1);
-        this->LoadShape("./assets/engine_assets/R4/engine_head.dat", 2);
-        this->LoadShape("./assets/engine_assets/R4/crank.dat", 3);
-        this->LoadShape("./assets/engine_assets/R4/link_rod.dat", 4);
-        break;
-
-    case EngineType::V8:
-        break;
-
-    default:
-        break;
-    }
-}
-
-ClassEngine::ClassEngine(const char *path)
-{
-    this->engineParts.push_back(ClassEngine::EnginePart());
-    this->LoadShape(path, 0);
+        ClassEngine::EnginePart(),
+        ClassEngine::EnginePart(),
+        ClassEngine::EnginePart(),
+        ClassEngine::EnginePart(),
+        ClassEngine::EnginePart(),
+        ClassEngine::EnginePart()
+    };
+    this->LoadShape("./assets/engine_assets/engine_body.png", 0);
+    this->LoadShape("./assets/engine_assets/piston.png", 1);
+    this->LoadShape("./assets/engine_assets/crank.png", 2);
+    this->LoadShape("./assets/engine_assets/link_rod.png", 3);
 }
 
 ClassEngine::~ClassEngine()
@@ -48,41 +35,24 @@ ClassEngine::~ClassEngine()
     std::cout << "ClassEngine::~ClassEngine()\n";
 #endif
 
-    for (auto& i : this->engineParts)
+    for (auto &i : this->engineParts)
     {
         if (i.texture)
             SDL_DestroyTexture(i.texture);
-        i.centre = {0, 0};
-        i.shape_rect = {0, 0, 0, 0};
         i.texture = nullptr;
     }
     this->engineParts.clear();
-    
 }
 
-void ClassEngine::Normalise(const float x, const float y, const Sint32 index)
+void ClassEngine::SetPartAngle(const PartNames index, float angle)
 {
-    
-}
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassEngine::SetPartAngle(const PartNames, float)\n";
+#endif
 
-void ClassEngine::NormaliseY(const float y, const Sint32 index)
-{
-    
-}
-
-void ClassEngine::Scale(const float k, const Sint32 index)
-{
-    
-}
-
-void ClassEngine::Scale(const float k)
-{
-    
-}
-
-void ClassEngine::NormaliseX(const float x, const Sint32 index)
-{
-    
+    while (angle > 360)
+        angle -= 360.0f;
+    this->engineParts[static_cast<Uint32>(index)].angle = angle;
 }
 
 void ClassEngine::LoadShape(const char *path, const Sint32 index)
@@ -91,13 +61,31 @@ void ClassEngine::LoadShape(const char *path, const Sint32 index)
     std::cout << "void ClassEngine::LoadShape(const char*)\n";
 #endif
 
-    std::ifstream fin(path, std::ios::binary | std::ios::in | std::ios::ate);
-    if (!fin)
+    if (!path)
+        return;
+    
+    SDL_Surface *surface = nullptr;
+    surface = IMG_Load(path);
+    if (!surface)
     {
-        std::cout << "ClassEngine Load error\n";
+        std::cout << SDL_GetError() << "\n";
         return;
     }
     
+    if(SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0, 255, 0)) < 0)
+    {
+        SDL_FreeSurface(surface); surface = nullptr;
+        std::cout << SDL_GetError() << "\n";
+        return;
+    }
+    
+    this->engineParts[index].texture = SDL_CreateTextureFromSurface(this->renderer, surface);
+    if (!this->engineParts[index].texture)
+    {
+        SDL_FreeSurface(surface); surface = nullptr;
+        std::cout << SDL_GetError() << "\n";
+        return;
+    }
 
-    fin.close();
+    SDL_FreeSurface(surface); surface = nullptr;
 }

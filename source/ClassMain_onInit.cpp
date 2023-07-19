@@ -17,26 +17,23 @@ bool ClassMain::onInit()
                                     1024, 640, SDL_WINDOW_SHOWN);
     if (!this->window)
         return false;
+    SDL_GetWindowSize(this->window, &center.x, &center.y);
+    center.x /= 2; center.y /= 2;
 
     this->renderer = SDL_CreateRenderer(this->window, -1, SDL_RENDERER_ACCELERATED);
     if (!this->renderer)
         return false;
 
-    this->en = new ClassEngine(ClassEngine::EngineType::R4);
+    this->en = new ClassEngine(this->renderer);
     if (!this->en)
         return false;
-
-    SDL_Point centre;
-    SDL_GetWindowSize(this->window, &centre.x, &centre.y);
-    centre.x /= 2;
-    centre.y /= 2; centre.y -= 30;
-    const float k = 1.5f;
-    this->en->Normalise(centre.x, centre.y, 0);
-    this->en->Normalise(centre.x, centre.y - 50 * k, 1);
-    this->en->Normalise(centre.x, centre.y - 140 * k, 2);
-    this->en->Normalise(centre.x, centre.y, 3);
-    this->en->Normalise(centre.x, centre.y + 30 * k, 4);
-    this->en->Scale(k);
+    
+    using PN = ClassEngine::PartNames;
+    SDL_Point start_point = {100, 100};
+    this->en->SetPartX(PN::ENGINE_BODY, start_point.x); this->en->SetPartY(PN::ENGINE_BODY, start_point.y);
+    this->en->SetPartX(PN::PISTON, start_point.x + 46); this->en->SetPartY(PN::PISTON, start_point.y + 130);
+    this->en->SetPartX(PN::CRANK, start_point.x + 60); this->en->SetPartY(PN::CRANK, start_point.y + 180);
+    this->en->SetPartX(PN::LINK_ROD, start_point.x + 67); this->en->SetPartY(PN::LINK_ROD, start_point.y + 135);
 
     this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 20);
     if (!this->font)
