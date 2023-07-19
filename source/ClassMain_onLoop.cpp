@@ -19,6 +19,12 @@ void ClassMain::onLoop()
         if ((this->en->GetPart(PN::PISTON)->y >= this->en->GetPart(PN::ENGINE_BODY)->y + 140) && speed > 0)
             speed = -5;
 
+        if ((en->GetPart(PN::CRANK)->angle >= 0 && en->GetPart(PN::CRANK)->angle < 90) ||
+            (en->GetPart(PN::CRANK)->angle >= 270 && en->GetPart(PN::CRANK)->angle < 360))
+            this->en->SetPartAngle(PN::LINK_ROD, this->en->GetPart(PN::LINK_ROD)->angle + 2.5f);
+        if ((en->GetPart(PN::CRANK)->angle >= 90 && en->GetPart(PN::CRANK)->angle < 270))
+            this->en->SetPartAngle(PN::LINK_ROD, this->en->GetPart(PN::LINK_ROD)->angle - 2.5f);
+
         this->en->SetPartAngle(PN::CRANK, this->en->GetPart(PN::CRANK)->angle + 11.5f);
         this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y + speed);
         this->en->SetPartY(PN::LINK_ROD, this->en->GetPart(PN::LINK_ROD)->y + speed);

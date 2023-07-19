@@ -20,6 +20,8 @@ public:
                     const Sint32 b, const Uint32 phi_beg, const Uint32 phi_end);    
     static void DrawText(SDL_Renderer* renderer, TTF_Font* font, 
                     const char* string, const SDL_Rect where); //Рисовка текста
+    static void DrawText(SDL_Renderer* renderer, TTF_Font* font, 
+                    const char* string, const Sint32 x, const Sint32 y); //Рисовка текста
     static void DrawPart(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape, 
                     const SDL_Point where); //Рисовка контура детали
     static void DrawPart(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape); //Рисовка контура детали

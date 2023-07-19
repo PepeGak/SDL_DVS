@@ -35,7 +35,7 @@ bool ClassMain::onInit()
     this->en->SetPartX(PN::CRANK, start_point.x + 60); this->en->SetPartY(PN::CRANK, start_point.y + 180);
     this->en->SetPartX(PN::LINK_ROD, start_point.x + 67); this->en->SetPartY(PN::LINK_ROD, start_point.y + 135);
 
-    this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 20);
+    this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 22);
     if (!this->font)
         return false;
 

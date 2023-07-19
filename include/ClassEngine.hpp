@@ -17,10 +17,11 @@ public:
 
     enum class PartNames
     {
-        ENGINE_BODY = 0,
-        PISTON,
-        CRANK,
-        LINK_ROD
+        ENGINE_BODY = 0, //Каркас двигателя
+        PISTON, //Поршень
+        CRANK, //Коленвал
+        LINK_ROD, //Шатун
+        VALVE //Клапан
     };
 
     /*

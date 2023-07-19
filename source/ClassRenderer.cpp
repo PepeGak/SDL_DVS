@@ -62,8 +62,7 @@ void ClassRenderer::DrawEllips(SDL_Renderer *renderer, const SDL_FPoint centre,
     ellips = nullptr;
 }
 
-void ClassRenderer::DrawText(SDL_Renderer *renderer, TTF_Font *font,
-                             const char *string, const SDL_Rect where)
+void ClassRenderer::DrawText(SDL_Renderer *renderer, TTF_Font *font, const char *string, const SDL_Rect where)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassRenderer::DrawText(SDL_Renderer*, TTF_Font*, const char*, const SDL_Rect)\n";
@@ -78,6 +77,30 @@ void ClassRenderer::DrawText(SDL_Renderer *renderer, TTF_Font *font,
     SDL_FreeSurface(textSurface); textSurface = nullptr;
 
     SDL_RenderCopy(renderer, textTexture, nullptr, &where);
+    SDL_DestroyTexture(textTexture); textTexture = nullptr;
+}
+
+void ClassRenderer::DrawText(SDL_Renderer *renderer, TTF_Font *font, const char *string, const Sint32 x, const Sint32 y)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassRenderer::DrawText(SDL_Renderer*, TTF_Font*, const char*, const Sint32, const Sint32)\n";
+#endif
+    if (!renderer || !font || !string)
+        return;
+
+    SDL_Color fg;
+    SDL_GetRenderDrawColor(renderer, &fg.r, &fg.g, &fg.b, &fg.a);
+    SDL_Surface *textSurface = TTF_RenderUTF8_Solid(font, string, fg);
+    SDL_Texture *textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    SDL_FreeSurface(textSurface); textSurface = nullptr;
+
+    SDL_Rect dstRect;
+    dstRect.x = x;
+    dstRect.y = y;
+
+    TTF_SizeUTF8(font, string, &dstRect.w, &dstRect.h);
+
+    SDL_RenderCopy(renderer, textTexture, nullptr, &dstRect);
     SDL_DestroyTexture(textTexture); textTexture = nullptr;
 }
 
