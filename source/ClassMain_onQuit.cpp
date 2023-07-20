@@ -13,6 +13,10 @@ void ClassMain::onQuit()
     if (this->en)
         delete this->en;
     this->en = nullptr;
+
+    if (this->fuel)
+        delete this->fuel;
+    this->fuel = nullptr;
     
     if (this->renderer)
         SDL_DestroyRenderer(this->renderer);

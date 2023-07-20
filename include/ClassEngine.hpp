@@ -47,9 +47,8 @@ public:
     inline void SetPartY(const PartNames index, const Sint32 y) { this->engineParts[static_cast<Uint32>(index)].y = y; }
     void SetPartAngle(const PartNames index, float angle);
     inline const auto& GetParts() { return this->engineParts; }
-    
-    
-    Uint32 stroke; //такт двигателя
+    inline void SetStroke(Uint32 stroke) { this->stroke = stroke; }
+    inline Uint32 GetStroke() { return this->stroke; }
 
 private:
 
@@ -62,6 +61,7 @@ protected:
     float filling_ratio; //Коэффициент наполнения
     Uint32 RPM; //Кол-во оборотов в минуту
     float efficiency; //КПД
+    Uint32 stroke; //такт двигателя
 };
 
 #endif //_CLASS_ENGINE_HPP_

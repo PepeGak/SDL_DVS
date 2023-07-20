@@ -5,6 +5,7 @@ ClassEngine::ClassEngine(SDL_Renderer *renderer)
 #ifdef _DVS_DEBUG_
     std::cout << "ClassEngine::ClassEngine(EngineType, SDL_Renderer*)\n";
 #endif
+
     this->fuel_ratio = 0;
     this->filling_ratio = 0;
     this->RPM = 0;

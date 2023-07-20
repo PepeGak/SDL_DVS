@@ -50,6 +50,7 @@ private:
 
     ClassEngine* en;
     ClassMusic* mus;
+    ClassFuel* fuel;
     
     Uint32 FPS;
     Uint32 frameDelay;

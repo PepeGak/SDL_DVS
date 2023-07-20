@@ -32,6 +32,7 @@ void ClassMain::onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode)
         else if (this->menu_options == ClassMain::MenuList::HELP_TEXT)
             this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
         break;
+    
     }
     
 }
