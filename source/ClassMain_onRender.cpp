@@ -44,7 +44,7 @@ void ClassMain::onRender_Screen()
     std::cout << "void ClassMain::onRender_Screen()\n";
 #endif //_DVS_DEBUG_
 
-    typedef ClassEngine::PartNames PN;
+    using PN = ClassEngine::PartNames;
 
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::ENGINE_BODY));
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::PISTON));
@@ -52,18 +52,33 @@ void ClassMain::onRender_Screen()
                                      this->en->GetPart(PN::LINK_ROD)->angle, SDL_FLIP_NONE);
     ClassRenderer::DrawTextureAngled(this->renderer, this->en->GetPart(PN::CRANK),
                                      this->en->GetPart(PN::CRANK)->angle, SDL_FLIP_NONE);
-
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::VALVE_IN));
+    ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::VALVE_OUT));
     ClassRenderer::DrawRect(this->renderer, this->fuel->GetWM(), this->fuel->GetWM_Color());
 
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-    ClassRenderer::DrawText(this->renderer, this->font, "Схема упрощённого ДВС", 75u, 50u);
+    ClassRenderer::DrawText(this->renderer, this->font, "Схема упрощённого ДВС", 75, 50);
     ClassRenderer::DrawText(this->renderer, this->font, "Информация о двигателе:", 98, 460);
 
-    std::vector<std::string> info =
-        {
-            "Тип двигателя: L4",
-            "Объём рабочей камеры: 0,8л.",
-        };
+    const std::vector<std::string> info =
+    {
+        "Тип двигателя: L4",
+        "Объём рабочей камеры: " + std::to_string(this->en->GetVh1()) + " см^3",
+        "Степень сжатия: " + std::to_string(this->en->GetE())
+    };
     for (Uint32 i = 0; i < info.size(); i++)
         ClassRenderer::DrawText(this->renderer, this->font, info[i].c_str(), 98, 486 + 26 * i);
+    
+    ClassRenderer::DrawText(this->renderer, this->font, "Такт рабочего цикла:", 360, 50);
+    const std::vector<std::string> stroke =
+    {
+        "Впуск",
+        "Сжатие",
+        "Рабочий ход (расширение)",
+        "Выпуск"
+    };
+    ClassRenderer::DrawText(this->renderer, this->font, stroke[this->en->GetStroke() - 1].c_str(), 360, 76);
+
+    
+
 }

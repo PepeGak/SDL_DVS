@@ -32,7 +32,7 @@ void ClassRenderer::DrawRect(SDL_Renderer *renderer, const SDL_Rect rect, const 
         return;
     
     SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, SDL_ALPHA_OPAQUE);
-    SDL_RenderDrawRect(renderer, &rect);
+    SDL_RenderFillRect(renderer, &rect);
 }
 
 void ClassRenderer::DrawCircle(SDL_Renderer *renderer, const SDL_FPoint centre, const Sint32 p,

@@ -7,6 +7,7 @@ ClassMain::ClassMain()
 #endif
 
     this->en = nullptr;
+    this->fuel = nullptr;
     this->appRunning = true;
     this->window = nullptr;
     this->renderer = nullptr;
@@ -47,8 +48,8 @@ int ClassMain::onExecute()
         while (SDL_PollEvent(&even))
             this->onEvent(&even);
 
-        this->onRender();
         this->onLoop();
+        this->onRender();
 
         this->frameTime = SDL_GetTicks() - this->frameStart;
         if (this->frameDelay > this->frameTime)

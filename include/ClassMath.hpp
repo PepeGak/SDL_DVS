@@ -9,11 +9,18 @@
 #include <ClassEngine.hpp>
 #include <ClassFuel.hpp>
 
-class ClassMath : private ClassEngine, private ClassFuel
+class ClassMath
 {
 public:
 
+    ClassMath();
+    ~ClassMath();
+    
+    
+
 private:
+
+    
 
 };
 

@@ -33,26 +33,39 @@ void ClassMain::onLoop()
         switch (this->en->GetStroke())
         {
         case 1:
-        case 2:
+        {
+            this->en->SetPartY(PN::VALVE_OUT, 78);
+            this->en->SetPartY(PN::VALVE_IN, 80);
             this->fuel->SetWM_Color({ 0x00, 0x80, 0xFF });
+        }
+            break;
+        case 2:
+        {
+            this->fuel->SetWM_Color({ 0x00, 0x80, 0xFF });
+            this->en->SetPartY(PN::VALVE_IN, 78);
+        }
             break;
 
         case 3:
+        {
             this->fuel->SetWM_Color({ 0xFF, 0x80, 0x00 });
+        }
             break;
 
         case 4:
+        {
             this->fuel->SetWM_Color({ 0x96, 0x96, 0x96 });
+            this->en->SetPartY(PN::VALVE_OUT, 80);
+        }
             break;
         
         default:
             this->en->SetStroke(this->en->GetStroke() % 4);
             break;
         }
-        
-        std::cout << this->en->GetStroke() << "\n";
 
-        this->en->SetPartAngle(PN::CRANK, this->en->GetPart(PN::CRANK)->angle + 11.5f);
+        this->fuel->SetWM_h(this->fuel->GetWM().h + speed);
+        this->en->SetPartAngle(PN::CRANK, this->en->GetPart(PN::CRANK)->angle + 11.1f);
         this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y + speed);
         this->en->SetPartY(PN::LINK_ROD, this->en->GetPart(PN::LINK_ROD)->y + speed);
         break;

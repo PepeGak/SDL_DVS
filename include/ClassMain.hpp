@@ -44,9 +44,10 @@ private:
     bool appRunning;
 
     void onExit() override;
-    void onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode) override;
-    void onKeyUp(SDL_Keycode sym, Uint16 mod, Uint16 scancode) override;
     void onLMouseDown(Sint32 xm, Sint32 ym) override;
+    void onKeyHDown() override;
+    void onArrowUpDown() override;
+    void onArrowDownDown() override;
 
     ClassEngine* en;
     ClassMusic* mus;

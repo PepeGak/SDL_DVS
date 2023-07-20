@@ -52,3 +52,35 @@ void ClassEvent::onEvent(SDL_Event *ev)
         break;
     }
 }
+
+void ClassEvent::onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassEvent::onKeyDown(SDL_Keycode, Uint16, Uint16)\n";
+#endif
+
+    switch (sym)
+    {
+    case SDLK_h:
+        this->onKeyHDown();
+        break;
+    case SDLK_DOWN:
+        this->onArrowDownDown();
+        break;
+    case SDLK_UP:
+        this->onArrowUpDown();
+        break;
+
+    default:
+        break;
+    }
+
+}
+
+void ClassEvent::onKeyUp(SDL_Keycode sym, Uint16 mod, Uint16 scancode)
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassEvent::onKeyUp(SDL_Keycode, Uint16, Uint16)\n";
+#endif
+
+}

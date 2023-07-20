@@ -30,6 +30,7 @@ public:
     inline SDL_Rect GetWM() { return this->working_mixture; }
 
 protected:
+
     Octane_Rating rating; //Октановое число
     SDL_Rect working_mixture; //Рабочая смесь
     SDL_Color wm_color; //Цвет рабочей смеси

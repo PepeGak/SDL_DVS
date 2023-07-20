@@ -15,13 +15,17 @@ class ClassEngine
 {
 public:
 
+    /*
+    * Индека каждой детали
+    */
     enum class PartNames
     {
         ENGINE_BODY = 0, //Каркас двигателя
         PISTON, //Поршень
         CRANK, //Коленвал
         LINK_ROD, //Шатун
-        VALVE //Клапан
+        VALVE_IN, //Впускной клапан
+        VALVE_OUT //Выпускной клапан
     };
 
     /*
@@ -46,9 +50,13 @@ public:
     inline void SetPartX(const PartNames index, const Sint32 x) { this->engineParts[static_cast<Uint32>(index)].x = x; }
     inline void SetPartY(const PartNames index, const Sint32 y) { this->engineParts[static_cast<Uint32>(index)].y = y; }
     void SetPartAngle(const PartNames index, float angle);
-    inline const auto& GetParts() { return this->engineParts; }
+
+    inline void SetRPM(const Uint32 RPM) { this->RPM = RPM; }
     inline void SetStroke(Uint32 stroke) { this->stroke = stroke; }
+    inline Uint32 GetE() { return this->E; } 
+    inline Uint32 GetRPM() { return this->RPM; }
     inline Uint32 GetStroke() { return this->stroke; }
+    inline Uint32 GetVh1() { return this->Vh1; }
 
 private:
 
@@ -57,11 +65,17 @@ private:
     void LoadShape(const char* path, const Sint32 index);
 
 protected:
+
     float fuel_ratio; //Коэф. избытка воздуха
     float filling_ratio; //Коэффициент наполнения
+    Uint32 E; //Степень сжатия
     Uint32 RPM; //Кол-во оборотов в минуту
-    float efficiency; //КПД
     Uint32 stroke; //такт двигателя
+    float pe; //Среднее эффективное давление
+    Uint32 Vh1; //Рабочий объём (в см^3)
+    Uint32 n; //Кол-во цилиндров
+    float efficiency; //КПД
+
 };
 
 #endif //_CLASS_ENGINE_HPP_

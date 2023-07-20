@@ -18,37 +18,40 @@ void ClassMain::onExit()
     this->appRunning = false;
 }
 
-void ClassMain::onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode)
-{
-#ifdef _DVS_DEBUG_
-    std::cout << "void ClassMain::onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode)\n";
-#endif
-
-    switch(sym)
-    {
-    case SDLK_h:
-        if (this->menu_options == ClassMain::MenuList::ENGINE_SCREEN)
-            this->menu_options = ClassMain::MenuList::HELP_TEXT;
-        else if (this->menu_options == ClassMain::MenuList::HELP_TEXT)
-            this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
-        break;
-    
-    }
-    
-}
-
-void ClassMain::onKeyUp(SDL_Keycode sym, Uint16 mod, Uint16 scancode)
-{
-#ifdef _DVS_DEBUG_
-    std::cout << "void ClassMain::onKeyUp(SDL_Keycode sym, Uint16 mod, Uint16 scancode)\n";
-#endif
-
-}
-
 void ClassMain::onLMouseDown(Sint32 xm, Sint32 ym)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassMain::onLMouseDown(Sint32 xm, Sint32 ym)\n";
+    std::cout << "void ClassMain::onLMouseDown(Sint32, Sint32)\n";
 #endif
     
+}
+
+void ClassMain::onKeyHDown()
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassMain::onKeyHDown()\n";
+#endif
+
+    if (this->menu_options == ClassMain::MenuList::ENGINE_SCREEN)
+        this->menu_options = ClassMain::MenuList::HELP_TEXT;
+    else if (this->menu_options == ClassMain::MenuList::HELP_TEXT)
+        this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
+}
+
+void ClassMain::onArrowUpDown()
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassMain::onArrowUpDown()\n";
+#endif
+
+    this->en->SetRPM(this->en->GetRPM() + 1);
+}
+
+void ClassMain::onArrowDownDown()
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassMain::onArrowDownDown()\n";
+#endif
+
+    this->en->SetRPM(this->en->GetRPM() - 1);
 }
