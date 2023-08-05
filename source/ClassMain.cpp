@@ -13,9 +13,10 @@ ClassMain::ClassMain()
     this->renderer = nullptr;
     this->center = {0, 0};
     this->mus = nullptr;
-    this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
+    this->animation_on = false;
+    this->kW = true;
     this->FPS = 60;
-    this->frameDelay = 10000 / FPS;
+    this->frameDelay = 2500 / FPS;
     this->frameStart = this->frameTime = 0;
 }
 
@@ -24,7 +25,6 @@ ClassMain::~ClassMain()
 #ifdef _DVS_DEBUG_
     std::cout << "ClassMain::~ClassMain()\n";
 #endif
-
 }
 
 int ClassMain::onExecute()
@@ -52,7 +52,7 @@ int ClassMain::onExecute()
         this->onRender();
 
         this->frameTime = SDL_GetTicks() - this->frameStart;
-        if (this->frameDelay > this->frameTime)
+        if (this->frameDelay * 60 / (!this->en->GetRPM() ? 1 : this->en->GetRPM()) > this->frameTime)
             SDL_Delay(this->frameDelay - this->frameTime);
     }
 

@@ -9,10 +9,10 @@ ClassEngine::ClassEngine(SDL_Renderer *renderer)
     this->fuel_ratio = 0;
     this->filling_ratio = 0;
     this->E = 9;
-    this->RPM = 0;
+    this->RPM = 60;
     this->stroke = 0;
     this->renderer = renderer;
-    this->pe = 0.8f;
+    this->Pe = 0.8f;
     this->Vh1 = 800;
     this->n = 4;
     this->efficiency = 0;

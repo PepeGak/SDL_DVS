@@ -1,6 +1,6 @@
 #include "ClassMain.hpp"
 
-void ClassMain::onEvent(SDL_Event* ev)
+void ClassMain::onEvent(SDL_Event *ev)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassMain::onEvent()\n";
@@ -23,7 +23,6 @@ void ClassMain::onLMouseDown(Sint32 xm, Sint32 ym)
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassMain::onLMouseDown(Sint32, Sint32)\n";
 #endif
-    
 }
 
 void ClassMain::onKeyHDown()
@@ -32,10 +31,24 @@ void ClassMain::onKeyHDown()
     std::cout << "void ClassMain::onKeyHDown()\n";
 #endif
 
-    if (this->menu_options == ClassMain::MenuList::ENGINE_SCREEN)
-        this->menu_options = ClassMain::MenuList::HELP_TEXT;
-    else if (this->menu_options == ClassMain::MenuList::HELP_TEXT)
-        this->menu_options = ClassMain::MenuList::ENGINE_SCREEN;
+}
+
+void ClassMain::onKeyRDown()
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassMain::onKeyRDown()\n";
+#endif
+
+    this->kW = !this->kW;
+}
+
+void ClassMain::onKeyQDown()
+{
+#ifdef _DVS_DEBUG_
+    std::cout << "void ClassMain::onKeyQDown()\n";
+#endif
+
+    this->animation_on = !this->animation_on;
 }
 
 void ClassMain::onArrowUpDown()
@@ -44,7 +57,7 @@ void ClassMain::onArrowUpDown()
     std::cout << "void ClassMain::onArrowUpDown()\n";
 #endif
 
-    this->en->SetRPM(this->en->GetRPM() + 1);
+    this->en->SetRPM(this->en->GetRPM() + 10);
 }
 
 void ClassMain::onArrowDownDown()
@@ -53,5 +66,10 @@ void ClassMain::onArrowDownDown()
     std::cout << "void ClassMain::onArrowDownDown()\n";
 #endif
 
-    this->en->SetRPM(this->en->GetRPM() - 1);
+    this->en->SetRPM(this->en->GetRPM() - 10);
+    if(this->en->GetRPM() < 0)
+    {
+        this->en->SetRPM(0);
+        this->animation_on = false;
+    }
 }

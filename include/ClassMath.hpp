@@ -16,7 +16,10 @@ public:
     ClassMath();
     ~ClassMath();
     
-    
+    inline static Sint32 kWToHP(float kW) { return static_cast<Sint32>(kW * 1.35f); }
+    inline static float HPtokW(float HP) { return HP * 0.735f; }
+    static Sint32 CalculateNe(Uint32 Vh, float pe, Uint32 RPM);
+    inline static float CalculateEffeciency(float A, float Q) { return A / Q; }
 
 private:
 

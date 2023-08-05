@@ -61,12 +61,28 @@ void ClassEvent::onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode)
 
     switch (sym)
     {
+    case SDLK_ESCAPE:
+       this->onExit();
+       break;
+       
     case SDLK_h:
         this->onKeyHDown();
         break;
+
+    case SDLK_r:
+        this->onKeyRDown();
+        break;
+
+    case SDLK_q:
+        this->onKeyQDown();
+        break;
+
+    case SDLK_s:
     case SDLK_DOWN:
         this->onArrowDownDown();
         break;
+    
+    case SDLK_w:
     case SDLK_UP:
         this->onArrowUpDown();
         break;

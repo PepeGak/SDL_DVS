@@ -9,6 +9,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
+#include <iomanip>
 
 #include "ClassEvent.hpp"
 #include "ClassEngine.hpp"
@@ -37,8 +38,6 @@ private:
     bool onInit();
     void onEvent(SDL_Event* ev) override;
     void onRender();
-    void onRender_Help();
-    void onRender_Screen();
     void onLoop();
     void onQuit();
     bool appRunning;
@@ -46,22 +45,21 @@ private:
     void onExit() override;
     void onLMouseDown(Sint32 xm, Sint32 ym) override;
     void onKeyHDown() override;
+    void onKeyRDown() override;
+    void onKeyQDown() override;
     void onArrowUpDown() override;
     void onArrowDownDown() override;
 
     ClassEngine* en;
     ClassMusic* mus;
     ClassFuel* fuel;
+    bool animation_on;
+    bool kW;
     
     Uint32 FPS;
     Uint32 frameDelay;
     Uint32 frameStart, frameTime;
     
-    enum class MenuList
-    {
-        HELP_TEXT = 0,
-        ENGINE_SCREEN
-    } menu_options;
 };
 
 #endif //_CLASS_MAIN_HPP_

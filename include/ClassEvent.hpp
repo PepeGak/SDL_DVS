@@ -15,6 +15,8 @@ public:
     virtual void onExit() = 0;
     virtual void onKeyDown(SDL_Keycode sym, Uint16 mod, Uint16 scancode);
     virtual void onKeyHDown() = 0;
+    virtual void onKeyQDown() = 0;
+    virtual void onKeyRDown() = 0;
     virtual void onKeyUp(SDL_Keycode sym, Uint16 mod, Uint16 scancode);
     virtual void onLMouseDown(Sint32 xm, Sint32 ym) = 0;
     virtual void onArrowUpDown() = 0;

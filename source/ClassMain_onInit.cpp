@@ -37,12 +37,12 @@ bool ClassMain::onInit()
     this->en->SetPartX(PN::VALVE_IN, start_point.x + 50); this->en->SetPartY(PN::VALVE_IN, start_point.y - 22);
     this->en->SetPartX(PN::VALVE_OUT, start_point.x + 112); this->en->SetPartY(PN::VALVE_OUT, start_point.y - 22);
 
-    this->fuel = new ClassFuel(147, 153);
+    this->fuel = new ClassFuel(148, 151);
     if (!this->fuel)
         return false;
     
-    this->fuel->SetWM_w(86);
-    this->fuel->SetWM_h(4);
+    this->fuel->SetWM_w(85);
+    this->fuel->SetWM_h(7);
     
     this->font = TTF_OpenFont("./assets/fonts/arialmt.ttf", 20);
     if (!this->font)
