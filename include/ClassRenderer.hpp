@@ -26,11 +26,11 @@ public:
     static void DrawPart(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape, 
                     const SDL_Point where); //Рисовка контура детали
     static void DrawPart(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape); //Рисовка контура детали
-    static void DrawTextureAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
+    static void DrawPartAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
                     SDL_Point where, float angle, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE); //Рисовка контура детали под углом
-    static void DrawTextureAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
+    static void DrawPartAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
                     float angle, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE); //Рисовка контура детали под углом
-    static void DrawTextureAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
+    static void DrawPartAngled(SDL_Renderer* renderer, const ClassEngine::EnginePart* shape,
                     SDL_Point where, SDL_Point* around, float angle, SDL_RendererFlip flip = SDL_RendererFlip::SDL_FLIP_NONE); //Рисовка контура детали под углом
 };
 

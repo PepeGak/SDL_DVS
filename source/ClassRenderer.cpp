@@ -152,12 +152,12 @@ void ClassRenderer::DrawPart(SDL_Renderer *renderer, const ClassEngine::EnginePa
     SDL_RenderCopy(renderer, shape->texture, nullptr, &dstRect);
 }
 
-void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, 
+void ClassRenderer::DrawPartAngled(SDL_Renderer *renderer, 
                                     const ClassEngine::EnginePart *shape, SDL_Point where, 
                                     float angle, SDL_RendererFlip flip)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::DrawTextureAngled(SDL_Renderer *, const EnginePart *, SDL_Point, float, SDL_RendererFlip)\n";
+    std::cout << "void ClassRenderer::DrawPartAngled(SDL_Renderer *, const EnginePart *, SDL_Point, float, SDL_RendererFlip)\n";
 #endif
 
     if (!renderer || !shape)
@@ -171,10 +171,10 @@ void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer,
     SDL_RenderCopyEx(renderer, shape->texture, nullptr, &dstRect, angle, nullptr, flip);
 }
 
-void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape, float angle, SDL_RendererFlip flip)
+void ClassRenderer::DrawPartAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape, float angle, SDL_RendererFlip flip)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::DrawTextureAngled(SDL_Renderer *, const EnginePart *, float, SDL_RendererFlip)\n";
+    std::cout << "void ClassRenderer::DrawPartAngled(SDL_Renderer *, const EnginePart *, float, SDL_RendererFlip)\n";
 #endif
 
     if (!renderer || !shape)
@@ -188,10 +188,10 @@ void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine:
     SDL_RenderCopyEx(renderer, shape->texture, nullptr, &dstRect, angle, nullptr, flip);
 }
 
-void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape, SDL_Point where, SDL_Point *around, float angle, SDL_RendererFlip flip)
+void ClassRenderer::DrawPartAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *shape, SDL_Point where, SDL_Point *around, float angle, SDL_RendererFlip flip)
 {
 #ifdef _DVS_DEBUG_
-    std::cout << "void ClassRenderer::DrawTextureAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *, SDL_Point, SDL_Point *, float, SDL_RendererFlip)\n";
+    std::cout << "void ClassRenderer::DrawPartAngled(SDL_Renderer *renderer, const ClassEngine::EnginePart *, SDL_Point, SDL_Point *, float, SDL_RendererFlip)\n";
 #endif
 
     if (!renderer || !shape)

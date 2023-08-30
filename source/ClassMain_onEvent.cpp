@@ -57,7 +57,7 @@ void ClassMain::onArrowUpDown()
     std::cout << "void ClassMain::onArrowUpDown()\n";
 #endif
 
-    this->en->SetRPM(this->en->GetRPM() + 10);
+    this->en->SetRPM(this->en->GetRPM() + 1);
 }
 
 void ClassMain::onArrowDownDown()
@@ -66,7 +66,7 @@ void ClassMain::onArrowDownDown()
     std::cout << "void ClassMain::onArrowDownDown()\n";
 #endif
 
-    this->en->SetRPM(this->en->GetRPM() - 10);
+    this->en->SetRPM(this->en->GetRPM() - 1);
     if(this->en->GetRPM() < 0)
     {
         this->en->SetRPM(0);

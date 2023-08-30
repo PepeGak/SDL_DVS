@@ -22,7 +22,7 @@ public:
     {
         ENGINE_BODY = 0, //Каркас двигателя
         PISTON, //Поршень
-        CRANK, //Коленвал
+        CRANK, //Коленвал 
         LINK_ROD, //Шатун
         VALVE_IN, //Впускной клапан
         VALVE_OUT //Выпускной клапан
@@ -59,8 +59,6 @@ public:
     inline Uint32 GetStroke() { return this->stroke; }
     inline float GetPe() { return this->Pe; }
     inline Uint32 GetVh1() { return this->Vh1; }
-
-    const Uint32 ds = 1;
 
 private:
 
