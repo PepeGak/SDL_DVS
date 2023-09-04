@@ -32,7 +32,7 @@ bool ClassMain::onInit()
     SDL_Point start_point = {100, 100};
     this->en->SetPartX(PN::ENGINE_BODY, start_point.x); this->en->SetPartY(PN::ENGINE_BODY, start_point.y);
     this->en->SetPartX(PN::PISTON, start_point.x + 46); this->en->SetPartY(PN::PISTON, start_point.y + 130 - 70);
-    this->en->SetPartX(PN::CRANK, start_point.x + 60); this->en->SetPartY(PN::CRANK, start_point.y + 180); this->en->SetPartAngle(PN::CRANK, 180);
+    this->en->SetPartX(PN::CRANK, start_point.x + 60); this->en->SetPartY(PN::CRANK, start_point.y + 180);
     this->en->SetPartX(PN::LINK_ROD, start_point.x + 67); this->en->SetPartY(PN::LINK_ROD, start_point.y + 135 - 70);
     this->en->SetPartX(PN::VALVE_IN, start_point.x + 50); this->en->SetPartY(PN::VALVE_IN, start_point.y - 22);
     this->en->SetPartX(PN::VALVE_OUT, start_point.x + 112); this->en->SetPartY(PN::VALVE_OUT, start_point.y - 22);

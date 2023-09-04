@@ -20,6 +20,7 @@ void ClassMain::onRender()
     SDL_RenderDrawLineF(this->renderer, 160 + 30, 0, 160 + 30, 400);
 
     SDL_RenderDrawLineF(this->renderer, 0, 235 + 45, 400, 235 + 45);
+    SDL_RenderDrawLineF(this->renderer, 160 + 30, 0, 160 + 30, 400);
 
 
     SDL_RenderPresent(this->renderer);
