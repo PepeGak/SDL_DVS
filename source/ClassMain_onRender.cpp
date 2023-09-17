@@ -16,11 +16,17 @@ void ClassMain::onRender()
     
     SDL_SetRenderDrawColor(this->renderer, 255, 0, 0, 0);
     
-    SDL_RenderDrawLineF(this->renderer, 0, 280 + 45, 400, 280 + 45);
+    SDL_RenderDrawLineF(this->renderer, 0, 325, 400, 325);
     SDL_RenderDrawLineF(this->renderer, 160 + 30, 0, 160 + 30, 400);
 
-    SDL_RenderDrawLineF(this->renderer, 0, 235 + 45, 400, 235 + 45);
+    SDL_RenderDrawLineF(this->renderer, 0, 290, 400, 290);
+    //SDL_RenderDrawLineF(this->renderer, 0, 301, 400, 301);
     SDL_RenderDrawLineF(this->renderer, 160 + 30, 0, 160 + 30, 400);
+    if (this->animation_on)
+    {
+        std::cout << this->en->GetPart(PN::CRANK)->angle << "\n";
+        std::cout << this->en->GetPart(PN::LINK_ROD)->x << " " << this->en->GetPart(PN::LINK_ROD)->y << "\n";
+    }
 
 
     SDL_RenderPresent(this->renderer);

@@ -20,6 +20,8 @@ public:
     inline static float HPtokW(float HP) { return HP * 0.735f; }
     static Sint32 CalculateNe(Uint32 Vh, float pe, Uint32 RPM);
     inline static float CalculateEffeciency(float A, float Q) { return A / Q; }
+    static float DegToRad(float degrees);
+    static float RadToDeg(float radians);
 
 private:
 

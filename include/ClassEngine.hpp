@@ -16,7 +16,7 @@ class ClassEngine
 public:
 
     /*
-    * Индека каждой детали
+    * Индекс каждой детали
     */
     enum class PartNames
     {

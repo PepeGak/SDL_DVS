@@ -32,6 +32,7 @@ public:
 protected:
 
     Octane_Rating rating; //Октановое число
+    
     SDL_Rect working_mixture; //Рабочая смесь
     SDL_Color wm_color; //Цвет рабочей смеси
 };
