@@ -34,12 +34,12 @@ public:
     struct EnginePart
     {
     public:
-        EnginePart() : texture(nullptr), x(0), y(0), angle(0.0f) {}
+        EnginePart() : texture(nullptr), x(0.0f), y(0.0f), angle(0.0f) {}
         ~EnginePart() {};
 
         SDL_Texture* texture;
-        Sint32 x;
-        Sint32 y;
+        float x;
+        float y;
         float angle;
     };
 
@@ -47,8 +47,8 @@ public:
     ~ClassEngine();
 
     inline const EnginePart* GetPart(PartNames index) { return &this->engineParts[static_cast<Uint32>(index)]; }
-    inline void SetPartX(const PartNames index, const Sint32 x) { this->engineParts[static_cast<Uint32>(index)].x = x; }
-    inline void SetPartY(const PartNames index, const Sint32 y) { this->engineParts[static_cast<Uint32>(index)].y = y; }
+    inline void SetPartX(const PartNames index, const float x) { this->engineParts[static_cast<Uint32>(index)].x = x; }
+    inline void SetPartY(const PartNames index, const float y) { this->engineParts[static_cast<Uint32>(index)].y = y; }
     void SetPartAngle(const PartNames index, float angle);
 
     inline void SetRPM(const Sint32 RPM) { this->RPM = RPM; }
