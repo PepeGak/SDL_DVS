@@ -23,12 +23,13 @@ void ClassMain::onLoop()
             this->en->SetPartAngle(PN::LINK_ROD, this->en->GetPart(PN::LINK_ROD)->angle + max_angle / 90);
         
         if (cur_crank_angle >= 0 && cur_crank_angle < 180)
-            this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y + 70 * cur_crank_angle / 180);
-        else if (cur_crank_angle >= 0 && cur_crank_angle < 180)
-            this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y - 70 * cur_crank_angle / 180);
+            this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y + 0.5f);
+        else if (cur_crank_angle >= 180 && cur_crank_angle < 360)
+            this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y - 1.0f);
 
-
-        if (cur_crank_angle == 0 || cur_crank_angle == 180 || cur_crank_angle == 360)
+        if (cur_crank_angle == 1 && this->en->GetStroke() == 0)
+            this->en->SetStroke(1);
+        else if (cur_crank_angle == 0 || cur_crank_angle == 180 || cur_crank_angle == 360)
             this->en->SetStroke(this->en->GetStroke() + 1);
         if (this->en->GetStroke() > 4)
             this->en->SetStroke(1);

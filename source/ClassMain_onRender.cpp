@@ -18,8 +18,5 @@ void ClassMain::onRender()
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::VALVE_IN));
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::VALVE_OUT));
 
-    std::cout << this->en->GetStroke() << "\n";
-
-
     SDL_RenderPresent(this->renderer);
 }

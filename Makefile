@@ -10,10 +10,10 @@ SRC = $(wildcard $(PREF_SRC)*.cpp)
 OBJ = $(patsubst $(PREF_SRC)%.cpp, $(PREF_OBJ)%.o, $(SRC))
 
 $(TARGET): $(OBJ)
-	$(COMP) $(OBJ) -g -o $(TARGET) $(LIBS)
+	$(COMP) $(OBJ) -g -Wall -o $(TARGET) $(LIBS)
 
 $(PREF_OBJ)%.o: $(PREF_SRC)%.cpp
-	$(COMP) -g -c $< -o $@ -I$(INC_PATH)
+	$(COMP) -g -Wall -c $< -o $@ -I$(INC_PATH)
 
 clean:
 	rm $(PREF_OBJ)*.o $(TARGET)
