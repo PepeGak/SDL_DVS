@@ -17,6 +17,14 @@ void ClassMain::onRender()
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::PISTON));
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::VALVE_IN));
     ClassRenderer::DrawPart(this->renderer, this->en->GetPart(PN::VALVE_OUT));
+    if (this->en->GetStroke())
+        ClassRenderer::DrawRect(this->renderer, this->fuel->GetWM(), this->fuel->GetWM_Color());
+
+    SDL_SetRenderDrawColor(this->renderer, 255, 140, 0, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawLine(this->renderer, 245, 160, 420, 160);
+    SDL_RenderDrawLine(this->renderer, 245, 214, 420, 214);
+    ClassRenderer::DrawText(this->renderer, this->font, "ВМТ", 425, 150);
+    ClassRenderer::DrawText(this->renderer, this->font, "НМТ", 425, 214);
 
     SDL_RenderPresent(this->renderer);
 }

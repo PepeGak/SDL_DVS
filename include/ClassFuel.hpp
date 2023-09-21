@@ -24,16 +24,16 @@ public:
     ~ClassFuel();
 
     inline void SetWM_Color(SDL_Color color) { this->wm_color = color; }
-    inline void SetWM_w(Sint32 w) { this->working_mixture.w = w; }
-    inline void SetWM_h(Sint32 h) { this->working_mixture.h = h; }
+    inline void SetWM_w(float w) { this->working_mixture.w = w; }
+    inline void SetWM_h(float h) { this->working_mixture.h = h; }
     inline SDL_Color GetWM_Color() { return this->wm_color; }
-    inline SDL_Rect GetWM() { return this->working_mixture; }
+    inline SDL_FRect GetWM() { return this->working_mixture; }
 
 protected:
 
     Octane_Rating rating; //Октановое число
     
-    SDL_Rect working_mixture; //Рабочая смесь
+    SDL_FRect working_mixture; //Рабочая смесь
     SDL_Color wm_color; //Цвет рабочей смеси
 };
 

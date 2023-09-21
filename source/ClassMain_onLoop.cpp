@@ -22,10 +22,14 @@ void ClassMain::onLoop()
         else if (cur_crank_angle >= 90 && cur_crank_angle < 270)
             this->en->SetPartAngle(PN::LINK_ROD, this->en->GetPart(PN::LINK_ROD)->angle + max_angle / 90);
         
+        float delta_s = 0.3f;
         if (cur_crank_angle >= 0 && cur_crank_angle < 180)
-            this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y + 0.3f);
+            delta_s = 0.3f;
         else if (cur_crank_angle >= 180 && cur_crank_angle < 360)
-            this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y - 0.3f);
+            delta_s = -0.3f;
+
+        this->en->SetPartY(PN::PISTON, this->en->GetPart(PN::PISTON)->y + delta_s);
+        this->fuel->SetWM_h(this->fuel->GetWM().h + delta_s);
 
         switch (this->en->GetStroke())
         {

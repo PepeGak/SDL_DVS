@@ -14,7 +14,7 @@ class ClassRenderer
 public:
     static void DrawLinesF(SDL_Renderer* renderer, const SDL_FPoint points[], const Sint32 amount); //Рисовка линий по нескольким точкам
     static void DrawLines(SDL_Renderer* renderer, const SDL_Point points[], const Sint32 amount); //Рисовка линий по нескольким точкам
-    static void DrawRect(SDL_Renderer* renderer, const SDL_Rect rect, const SDL_Color colour); //Рисовка прямоугольника
+    static void DrawRect(SDL_Renderer* renderer, const SDL_FRect rect, const SDL_Color colour); //Рисовка прямоугольника
     static void DrawCircle(SDL_Renderer* renderer, const SDL_FPoint centre, const Sint32 p, 
                     const Uint32 phi_beg, const Uint32 phi_end); //Рисовка круга в полярных координатах
     static void DrawEllips(SDL_Renderer* renderer, const SDL_FPoint centre, const Sint32 a, 

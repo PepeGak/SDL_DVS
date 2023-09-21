@@ -22,7 +22,7 @@ void ClassRenderer::DrawLines(SDL_Renderer *renderer, const SDL_Point points[], 
     SDL_RenderDrawLines(renderer, points, amount);
 }
 
-void ClassRenderer::DrawRect(SDL_Renderer *renderer, const SDL_Rect rect, const SDL_Color colour)
+void ClassRenderer::DrawRect(SDL_Renderer *renderer, const SDL_FRect rect, const SDL_Color colour)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassRenderer::DrawRect(SDL_Renderer *, const SDL_Rect, const SDL_Color)\n";
@@ -32,7 +32,7 @@ void ClassRenderer::DrawRect(SDL_Renderer *renderer, const SDL_Rect rect, const 
         return;
     
     SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, SDL_ALPHA_OPAQUE);
-    SDL_RenderFillRect(renderer, &rect);
+    SDL_RenderFillRectF(renderer, &rect);
 }
 
 void ClassRenderer::DrawCircle(SDL_Renderer *renderer, const SDL_FPoint centre, const Sint32 p,
