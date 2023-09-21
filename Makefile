@@ -15,9 +15,6 @@ $(TARGET): $(OBJ)
 $(PREF_OBJ)%.o: $(PREF_SRC)%.cpp
 	$(COMP) -g -Wall -c $< -o $@ -I$(INC_PATH)
 
-rebuild:
-	make clean || make all
-
 clean:
 	rm $(PREF_OBJ)*.o $(TARGET)
 

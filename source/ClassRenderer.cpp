@@ -22,7 +22,7 @@ void ClassRenderer::DrawLines(SDL_Renderer *renderer, const SDL_Point points[], 
     SDL_RenderDrawLines(renderer, points, amount);
 }
 
-void ClassRenderer::DrawRect(SDL_Renderer *renderer, const SDL_FRect rect, const SDL_Color colour)
+void ClassRenderer::DrawRectF(SDL_Renderer *renderer, const SDL_FRect rect, const SDL_Color colour)
 {
 #ifdef _DVS_DEBUG_
     std::cout << "void ClassRenderer::DrawRect(SDL_Renderer *, const SDL_Rect, const SDL_Color)\n";
