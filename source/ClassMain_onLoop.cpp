@@ -30,22 +30,27 @@ void ClassMain::onLoop()
         switch (this->en->GetStroke())
         {
         case 1:
-            
+            this->en->SetPartY(PN::VALVE_OUT, 78);
+            this->en->SetPartY(PN::VALVE_IN, 80);
+            this->fuel->SetWM_Color({0x00, 0x80, 0xFF});
             break;
-        
-        case 2:
 
+        case 2:
+            this->fuel->SetWM_Color({0x00, 0x80, 0xFF});
+            this->en->SetPartY(PN::VALVE_IN, 78);
             break;
 
         case 3:
-        
+            this->fuel->SetWM_Color({0xFF, 0x80, 0x00});
             break;
 
         case 4:
-
+            this->fuel->SetWM_Color({0x96, 0x96, 0x96});
+            this->en->SetPartY(PN::VALVE_OUT, 80);
             break;
 
         default:
+            this->en->SetStroke(this->en->GetStroke() % 4);
             break;
         }
 
@@ -53,7 +58,5 @@ void ClassMain::onLoop()
             this->en->SetStroke(1);
         else if (cur_crank_angle == 0 || cur_crank_angle == 180 || cur_crank_angle == 360)
             this->en->SetStroke(this->en->GetStroke() + 1);
-        if (this->en->GetStroke() > 4)
-            this->en->SetStroke(1);
     }
 }
