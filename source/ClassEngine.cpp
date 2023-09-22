@@ -6,14 +6,12 @@ ClassEngine::ClassEngine(SDL_Renderer *renderer)
     std::cout << "ClassEngine::ClassEngine(EngineType, SDL_Renderer*)\n";
 #endif
 
-    this->fuel_ratio = 0;
-    this->filling_ratio = 0;
     this->E = 9;
     this->RPM = 60;
     this->stroke = 0;
     this->renderer = renderer;
-    this->Pe = 0.8f;
-    this->Vh1 = 800;
+    this->p_me = 0.52f;
+    this->V_d = 740;
     this->n = 4;
     this->efficiency = 0;
 

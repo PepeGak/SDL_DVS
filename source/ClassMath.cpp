@@ -1,27 +1,31 @@
 #include "ClassMath.hpp"
 
-ClassMath::ClassMath()
+float ClassMath::Calculate_A(Sint32 N, float T)
 {
+    float A = 2 * M_PI * N * T;
+    return A;
 }
 
-ClassMath::~ClassMath()
+float ClassMath::Calculate_Q(Sint32 N, float R, float Q_b)
 {
+    float Q = R * Q_b * N;
+    return Q;
 }
 
-Sint32 ClassMath::CalculateNe(Uint32 Vh, float pe, Uint32 RPM)
+float ClassMath::Calculate_W(float p_me, float V_d)
 {
-    Sint32 Ne = Vh * RPM * pe / 120;
-    return Ne;
+    float W = p_me * V_d;
+    return W;
 }
 
-float ClassMath::DegToRad(float degrees)
+float ClassMath::Calculate_P(float W, Sint32 N, Sint32 n_c)
 {
-    float rad = degrees * M_PI / 180;
-    return rad;
+    float P = W * N / n_c;
+    return P;
 }
 
-float ClassMath::RadToDeg(float radians)
+float ClassMath::Calculate_T(float V_d, float p_me)
 {
-    float deg = radians * 180 / M_PI;
-    return deg;
+    float T = V_d * p_me / 0.0126;
+    return T;
 }

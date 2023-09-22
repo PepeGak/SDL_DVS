@@ -16,7 +16,7 @@ ClassMain::ClassMain()
     this->animation_on = false;
     this->kW = true;
     this->FPS = 60;
-    this->frameDelay = 2500 / FPS;
+    this->frameDelay = 1000 / FPS;
     this->frameStart = this->frameTime = 0;
 }
 
@@ -52,7 +52,7 @@ int ClassMain::onExecute()
         this->onRender();
 
         this->frameTime = SDL_GetTicks() - this->frameStart;
-        if (this->frameDelay * 60 / (!this->en->GetRPM() ? 1 : this->en->GetRPM()) > this->frameTime)
+        if (this->frameDelay > this->frameTime)
             SDL_Delay(this->frameDelay - this->frameTime);
     }
 

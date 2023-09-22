@@ -53,12 +53,10 @@ public:
 
     inline void SetRPM(const Sint32 RPM) { this->RPM = RPM; }
     inline void SetStroke(Uint32 stroke) { this->stroke = stroke; }
-    inline void SetPe(float Pe) { this->Pe = Pe; }
-    inline Uint32 GetE() { return this->E; } 
     inline Sint32 GetRPM() { return this->RPM; }
     inline Uint32 GetStroke() { return this->stroke; }
-    inline float GetPe() { return this->Pe; }
-    inline Uint32 GetVh1() { return this->Vh1; }
+    inline Uint32 GetV_d() { return this->V_d; }
+    inline float GetP_me() { return this->p_me; }
 
 private:
 
@@ -68,13 +66,11 @@ private:
 
 protected:
 
-    float fuel_ratio; //Коэф. избытка воздуха
-    float filling_ratio; //Коэффициент наполнения
     Uint32 E; //Степень сжатия
     Sint32 RPM; //Кол-во оборотов в минуту
     Uint32 stroke; //такт двигателя
-    float Pe; //Среднее эффективное давление
-    Uint32 Vh1; //Рабочий объём (в см^3)
+    float p_me; //Среднее эффективное давление, МПа
+    Uint32 V_d; //Объём двигателя, см^3
     Uint32 n; //Кол-во цилиндров
     float efficiency; //КПД
 

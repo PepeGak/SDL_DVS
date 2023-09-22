@@ -12,8 +12,8 @@ void ClassMain::onLoop()
         this->en->SetPartAngle(PN::CRANK, this->en->GetPart(PN::CRANK)->angle + 1);
 
         float alpha = this->en->GetPart(PN::CRANK)->angle - 90;
-        this->en->SetPartX(PN::LINK_ROD, 167 + 35 * cosf(ClassMath::DegToRad(alpha)));
-        this->en->SetPartY(PN::LINK_ROD, 200 + 35 * sinf(ClassMath::DegToRad(alpha)));
+        this->en->SetPartX(PN::LINK_ROD, 167 + 35 * cosf(ClassMath::Deg_To_Rad(alpha)));
+        this->en->SetPartY(PN::LINK_ROD, 200 + 35 * sinf(ClassMath::Deg_To_Rad(alpha)));
 
         const float max_angle = 6.0f;
         float cur_crank_angle = this->en->GetPart(PN::CRANK)->angle;
